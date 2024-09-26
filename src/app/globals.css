@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --white: #ffffff;
+  --black: #171717;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --gray-1: #FBFBFB;
+  --gray-2: #F6F6F6;
+  --gray-3: #BFBFBF;
+  --gray-4: #7C7C7C;
+  
+  --pink-1: #FFF4F6;
+  --pink-2: #FCC4D0;
+  --pink-3: #FFAEBF;
+  --pink-4: #FE718D;
+  
+  --orange-1: #FFF1EA;
+  --orange-2: #FFBE9F;
+  --orange-3: #FFA686;
+  --orange-4: #FA864F;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  --orange-degrade-1: #FEB491;
+  --orange-degrade-2: #FEC7AC;
+  --orange-degrade-3: #FFD8C6;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  --pink-degrade-1: #FFDAE1;
+  --pink-degrade-2: #FCC4D0;
+  --pink-degrade-3: #FFAEBF;
+
+  --red-degrade-1: #FBC3C3;
+  --red-degrade-2: #FBA1A1;
+  --red-degrade-3: #FE9191;
+
+  --purple-degrade-1: #ECD4F8;
+  --purple-degrade-2: #E0BDF0;
+  --purple-degrade-3: #D69EF2;
+
+  --green-degrade-1: #DCEFC4;
+  --green-degrade-2: #B9E189;
+  --green-degrade-3: #97CC58;
+
 }
