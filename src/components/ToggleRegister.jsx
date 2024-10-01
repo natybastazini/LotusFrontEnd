@@ -35,7 +35,7 @@ export default function Toggle() {
     Uma doula é uma profissional que oferece suporte físico, 
     emocional e informativo à gestante antes, durante e após o parto.
      Ao selecionar essa opção, você confirma que é uma profissional treinada e
-      concorda com os <a href="https://www.canva.com/design/DAGPovniYY4/_bnBDb0nIioAfkYcdyXfpA/edit?utm_content=DAGPovniYY4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" autofocus><b>termos de uso</b></a> do aplicativo.`
+      concorda com os <a href="./cadastro/Termos" autofocus><b>termos de uso</b></a> do aplicativo.`
     });
   };
 
