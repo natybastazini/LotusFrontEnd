@@ -11,8 +11,9 @@ import config from "@/public/icons/utilities/settings-white.svg";
 import edit from "@/public/icons/utilities/edit-pencil-orange.svg";
 import verif from "@/public/icons/profile-information/verificado.png";
 import logout from "@/public/icons/nav/Ativo/logout.png";
-import arrow from "@/public/icons/utilities/arrow-pink.svg";
 import book from "@/public/icons/utilities/book-pink.svg";
+import arrow from "@/public/icons/utilities/arrow-pink.svg";
+
 
 export default function Home() {
   const [userId, setUserId] = useState("");
@@ -20,19 +21,26 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [cpf, setCpf] = useState("");
-  const [dob, setDob] = useState("");
+
   const [yearsAsDoula, setYearsAsDoula] = useState("");
-  const [description, setDescription] = useState(""); // Novo estado para descrição
-  const [specialization, setSpecialization] = useState(""); // Novo estado para especialidade
+  const [description, setDescription] = useState("Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+  const [specialization, setSpecialization] = useState([]);
+  const [specializationOptions] = useState([
+    "Consultoria em aleitamento materno",
+    "Doula de parto",
+    "Doula do luto",
+    "Doula Cultural",
+    "Doula de Aborto ou perda gestacional",
+    "Doula de Adoção"
+  ]);
+  const [selectedSpecializations, setSelectedSpecializations] = useState([]);
 
   const fetchUserInfo = async (id) => {
     const userData = {
       name: "Vitória Castro",
       specialization: [
         "Consultoria em aleitamento materno",
-        "Doula de parto",
-        "Doula do luto",
+        "Doula de parto"
       ],
       profilePicture: null,
     };
@@ -64,9 +72,19 @@ export default function Home() {
     toggleModal();
   };
 
-  // Novo handler para salvar as informações do modal
+  const handleSpecializationChange = (option) => {
+    if (selectedSpecializations.includes(option)) {
+      setSelectedSpecializations(
+        selectedSpecializations.filter((spec) => spec !== option)
+      );
+    } else {
+      setSelectedSpecializations([...selectedSpecializations, option]);
+    }
+  };
+
   const handleSave = () => {
     setProfilePicture(selectedImage);
+    setSpecialization(selectedSpecializations);
     toggleModal();
   };
 
@@ -106,7 +124,9 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="bg-gray-1 flex-grow min-h-screen lg:w-[6000px] rounded-3xl lg:ml-[20%] p-4 lg:p-8 relative">
+
+      {/* DIV CINZA PRINCIPAL */}
+      <div className="bg-gray-1 flex-grow lg:w-[600%] rounded-3xl lg:ml-[20%] p-4 lg:p-8 relative">
         <div className="absolute top-0 left-0 w-full">
           <Image src={laranja} alt="Nav Laranja" className="w-full h-32 lg:h-24" />
 
@@ -143,9 +163,9 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row items-center gap-4 relative md:h-48">
           <div className="relative">
-            <div className="bg-white h-60 w-60 opacity-100 rounded-full flex items-center justify-center">
+            <div className="bg-white h-48 w-48 lg:h-80 lg:w-80 rounded-full flex items-center justify-center">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-48 w-48 rounded-full flex items-center justify-center bg-gray-1">
+                <div className="h-40 w-40 lg:h-64 lg:w-64 rounded-full flex items-center justify-center bg-gray-1">
                   {profilePicture ? (
                     <img
                       src={profilePicture}
@@ -160,27 +180,26 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2 mt-10 text-center lg:text-left md:text-[20px]">
-            <div className="flex gap-5 items-center justify-center lg:justify-start md:text-[6]">
+          <div className="flex flex-col gap-5 mt-12 text-center lg:text-left md:text-[20px]">
+            <div className="flex gap-9 items-center justify-center lg:justify-start md:text-[6]">
               <h1 className="text-[25px] md:text-[25px] text-gray-4 font-ABeeZee z-40 font-thin">
                 {userInfo ? userInfo.name : "Nome do Usuário"}
               </h1>
               <Image src={verif} alt="verificado doula" className="size-9 content-center md:size-6 " />
             </div>
 
-            {/* ESPECIALIZAÇÃO */}
             <div>
               <h1 className="text-[15px] text-gray-3 font-medium">Especialização em:</h1>
               <div className="flex flex-wrap gap-4 mt-4 text-gray-4 justify-center lg:justify-start">
-                {userInfo && userInfo.specialization ? (
-                  userInfo.specialization.map((spec, index) => (
+                {specialization.length > 0 ? (
+                  specialization.map((spec, index) => (
                     <div key={index} className="bg-white shadow-md rounded-full p-4 h-12 flex items-center justify-center">
                       <span>{spec}</span>
                     </div>
                   ))
                 ) : (
-                  <div className="bg-white shadow-md rounded-full p-4 h-12 flex items-center justify-center md:h-4">
-                    <span className="md:text-[12px]">especialização 1</span>
+                  <div className="bg-white shadow-md rounded-full p-4 h-12 flex items-center justify-center md:h-4 lg:h-10">
+                    <span className="md:text-[12px] lg:text-[15px]">especialização 1</span>
                   </div>
                 )}
               </div>
@@ -188,67 +207,118 @@ export default function Home() {
           </div>
         </div>
 
-        {/* DESCRIÇÃO E TEMPO DE SERVIÇO */}
-        <div className="flex flex-col lg:flex-row mt-20">
-          <div className="flex-1 mb-8 lg:mb-0">
-            <h1 className="text-gray-3 text-[23px] font-ABeeZee md:text-[15px]">{yearsAsDoula || "Doula a 5 anos"}</h1>
-            <h1 className="text-xl text-gray-4 break-words max-w-xl mt-4 md:text-[15px]">
-              {description || "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
-            </h1>
-          </div>
-
+               {/* DESCRIÇÃO DO PERFIL */}
+        <div className="flex mt-28 gap-28 justify-between">
           <div className="flex-1">
-            <h1 className="text-gray-3 text-[23px] font-ABeeZee
-            md:text-[15px]">{dob || "Data de Nascimento"}</h1>
-            <h1 className="text-xl text-gray-4 break-words max-w-xl mt-4 md:text-[15px]">
-              {cpf || "CPF não disponível"}
+            <h1 className="text-gray-3 text-[23px] font-ABeeZee">
+              Doula a {yearsAsDoula ? yearsAsDoula : "5"} anos
+            </h1>
+            <h1 className="text-xl text-gray-4 break-words max-w-xl mt-4">
+              {description}
             </h1>
           </div>
-        </div>
 
-        {/* Modal */}
-        {isModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h2 className="text-lg font-bold mb-4">Editar Informações</h2>
-              <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
-                <div className="mb-4">
-                  <label className="block text-gray-700">Descrição:</label>
-                  <textarea
-                    className="border rounded p-2 w-full"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
+          {/* Conteúdos Publicados */}
+          <div className="flex-1 ">
+            <h1 className="text-gray-3 text-[23px] font-ABeeZee">Conteúdos publicados:</h1>
+            <div className="mt-4 space-y-4">
+              <div className="flex items-start cursor-pointer border-2 border-gray-300 rounded-lg hover:bg-gray-200 bg-white">
+                <div className="bg-pink-3 h-28 w-3 rounded-s"></div>
+                <div className="flex-grow text-left pl-2 ">
+                  <div className="flex items-center text-[20px] text-pink-3">
+                    <Image src={book} alt="Ícone de livro" className="h-5 w-5 mr-1" />
+                    <span>Nicho: Amamentação</span>
+                  </div>
+                  <span className="text-gray-4 text-[25px] pt-2">Desvendando a amamentação</span>
+                  <div className="text-[20px] text-gray-3 pt-2">Atualizado: 01/01/2024</div>
                 </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700">Especialização:</label>
-                  <input
-                    type="text"
-                    className="border rounded p-2 w-full"
-                    value={specialization}
-                    onChange={(e) => setSpecialization(e.target.value)}
-                  />
+                <div className="flex items-center justify-center ml-2">
+                  <Image src={arrow} alt="Seta rosa" className="h-10 w-10" />
                 </div>
-                <div className="flex justify-between">
-                  <button
-                    type="button"
-                    className="bg-red-500 text-white rounded px-4 py-2"
-                    onClick={toggleModal}
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-green-500 text-white rounded px-4 py-2"
-                  >
-                    Salvar
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+        </div>
+
+
+      {/* MODAL */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-transparent">
+          <div className="bg-white p-8 rounded-md max-w-4xl w-full relative">
+            <button onClick={toggleModal} className="absolute top-4 right-4">
+              <span className="text-gray-500">X</span>
+            </button>
+
+            <div className="flex items-start">
+              
+              <div className="mr-8">
+                <label className="block mb-1">Foto de Perfil</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="border-gray-1 border-1 p-2 rounded-lg w-full"
+                />
+            
+                {selectedImage && (
+                  <div className="mt-4">
+                    <img
+                      src={selectedImage}
+                      alt="Preview"
+                      className="w-60 h-60 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="flex-grow">
+                <div className="mb-4">
+                  <label className="block mb-1">Tempo como Doula</label>
+                  <input
+                    type="text"
+                    value={yearsAsDoula}
+                    onChange={(e) => setYearsAsDoula(e.target.value)}
+                    className="border p-2 rounded-lg w-full"
+                    placeholder="Insira o tempo como Doula"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block mb-1">Descrição</label>
+                  <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="border p-2 rounded-lg w-full"
+                    placeholder="Insira uma descrição"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block mb-1">Especialização</label>
+                  <div className="flex flex-wrap gap-2">
+                    {specializationOptions.map((option, index) => (
+                      <label key={index} className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedSpecializations.includes(option)}
+                          onChange={() => handleSpecializationChange(option)}
+                        />
+                        <span>{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <button onClick={handleSave} className="bg-pink-3 text-white rounded-lg p-2 w-full">
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
