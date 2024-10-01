@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Swal from 'sweetalert2';
 
+export let statusToggle = false
 
 export default function Toggle() {
   const [enabled, setEnabled] = useState(false);
@@ -13,11 +14,15 @@ export default function Toggle() {
     // Exibir a mensagem no terminal se o toggle for ativado
     if (!enabled) {
       console.log("Toggle ativado!");
+      statusToggle = true
 
-      // Exibir um alert quando o toggle for ativado
       DoulaInfo()
+
+    // Exibir um alert quando o toggle for ativado
+    
     }else{
         console.log("Toggle desativado!");
+        statusToggle = false
     }
   };
 

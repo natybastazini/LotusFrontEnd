@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from 'react';
 
 // Import das imagens 
 import LotusIcon from "../../../public/icons/utilities/lotus-icon.svg";
@@ -11,8 +14,38 @@ import CircleDegrade from "../../../public/icons/utilities/circle-degrade.svg"
 
 // Import dos componentes
 import Toggle from "@/components/ToggleRegister";
+import { statusToggle } from '../../components/ToggleRegister';
+
 
 export default function Register() {
+
+    useEffect(() => {
+        const botao = document.getElementById("btn");
+        
+        // Verifique se o botão existe
+        if (botao) {
+          botao.addEventListener("click", validacaoFomulario);
+        }
+    
+        // Limpeza: Remova o listener quando o componente for desmontado
+        return () => {
+          if (botao) {
+            botao.removeEventListener("click", validacaoFomulario);
+          }
+        };
+      }, []); 
+    
+      const validacaoFomulario = () => {
+        if(statusToggle == true){
+
+            // faltando adicionar o caminho para o cadastro de doula
+            window.location.replace()
+        }else{
+
+            // faltando adicionar o caminho para o cadastro de gestante
+        }
+      };
+
   
   return (
     <div className="flex w-screen h-screen max-xl:p-16 max-sm:p-8 overflow-hidden">
@@ -97,14 +130,14 @@ export default function Register() {
         {/* Botao e Toggle Doula */}
         <div className="flex w-[40vw] gap-10 h-14 max-sm:w-full max-sm:gap-4 max-sm:items-end max-sm:flex-col max-lg:w-full">
 
-          <div className="flex items-center p-4 w-2/3 rounded-full border-[3px] border-gray-1 bg-white gap-2 max-sm:w-full">
+          <div className="flex items-center p-4 w-2/3 rounded-full border-[3px] border-gray-1 bg-white gap-4 max-sm:w-full">
               
               <Toggle></Toggle>
               <p className="text-gray-3 font-ABeeZee">Cadastro como Doula</p>
 
           </div>
 
-          <button className="sw-1/3 transition duration-150 ease-in-out bg-gradient-to-r from-pink-3 to-orange-3 p-4 px-6 items-center justify-between rounded-full text-white flex hover:cursor-pointer hover:scale-95 max-sm:w-full max-sm:h-16 ">
+          <button id="btn" className="sw-1/3 transition duration-150 ease-in-out bg-gradient-to-r from-pink-3 to-orange-3 p-4 px-6 items-center justify-between rounded-full text-white flex hover:cursor-pointer hover:scale-95 max-sm:w-full max-sm:h-16 ">
             
             <p className="text-xl">Próximo</p>
             <Image className="w-[10%] max-sm:w-[5vw] " alt="Arrow Icon" src={ArrowIcon}></Image>
