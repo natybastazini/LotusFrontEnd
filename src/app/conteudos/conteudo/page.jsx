@@ -11,6 +11,8 @@ import LogoConteudo from "../../../../public/icons/nav/conteudos.svg"
 import LogoChat from "../../../../public/icons/nav/chat.svg"
 import LogoGaleria from "../../../../public/icons/nav/galeria.svg"
 import LogoPerfil from "../../../../public/icons/nav/profile.svg"
+
+// Componente
 import Card from "@/components/Card";
 
 
