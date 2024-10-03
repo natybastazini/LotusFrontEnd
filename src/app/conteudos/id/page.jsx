@@ -14,6 +14,7 @@ import LogoPerfil from "../../../../public/icons/nav/profile.svg"
 
 // Componente
 import Conteudo from "@/components/Conteudo";
+// preciso da função de id
 
 export default async function Home() {
 
