@@ -16,7 +16,7 @@ import CircleDegrade from "../../../public/icons/utilities/circle-degrade.svg"
 export default function Home() {
 
   // URl da API
-  const apiUrl = "https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante";
+  const apiUrl = "";
 
 
   //Variveis
