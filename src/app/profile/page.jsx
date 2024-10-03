@@ -14,14 +14,30 @@ import logout from "@/public/icons/nav/Ativo/logout.png";
 import book from "@/public/icons/utilities/book-pink.svg";
 import arrow from "@/public/icons/utilities/arrow-pink.svg";
 
+const SettingsModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg p-6 w-11/12 md:w-1/3">
+        <h2 className="text-lg font-bold mb-4">Configurações</h2>
+        {/* Adicione aqui os campos ou opções que você deseja */}
+        <button onClick={onClose} className="mt-4 bg-pink-3 text-white p-2 rounded">
+          Fechar
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default function Home() {
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [cpf, setCpf] = useState('');
   const [userId, setUserId] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-
   const [yearsAsDoula, setYearsAsDoula] = useState("");
   const [description, setDescription] = useState("Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
   const [specialization, setSpecialization] = useState([]);
@@ -124,13 +140,13 @@ export default function Home() {
         </button>
       </div>
 
-
       {/* DIV CINZA PRINCIPAL */}
       <div className="bg-gray-1 flex-grow lg:w-[600%] rounded-3xl lg:ml-[20%] p-4 lg:p-8 relative">
         <div className="absolute top-0 left-0 w-full">
           <Image src={laranja} alt="Nav Laranja" className="w-full h-32 lg:h-24" />
 
-          <button>
+          {/* IMAGEM BOTAO CONFIG */}
+          <button onClick={() => setIsSettingsModalOpen(true)}>
             <Image
               src={config}
               alt="Configurações"
@@ -190,36 +206,37 @@ export default function Home() {
 
             <div>
               <h1 className="text-[15px] text-gray-3 font-medium">Especialização em:</h1>
-              <div className="flex flex-wrap gap-4 mt-4 text-gray-4 justify-center lg:justify-start">
-                {specialization.length > 0 ? (
-                  specialization.map((spec, index) => (
-                    <div key={index} className="bg-white shadow-md rounded-full p-4 h-12 flex items-center justify-center">
-                      <span>{spec}</span>
-                    </div>
-                  ))
-                ) : (
-                  <div className="bg-white shadow-md rounded-full p-4 h-12 flex items-center justify-center md:h-4 lg:h-10">
-                    <span className="md:text-[12px] lg:text-[15px]">especialização 1</span>
-                  </div>
-                )}
+              <div className="flex flex-wrap gap-4 mt-4 text-gray-4 md:justify-center lg:justify-start">
+                {userInfo
+                  ? userInfo.specialization.map((spec, index) => (
+                      <span
+                        key={index}
+                        className="bg-pink-3 text-white rounded px-2 py-1 text-sm"
+                      >
+                        {spec}
+                      </span>
+                    ))
+                  : specialization.map((spec, index) => (
+                      <span
+                        key={index}
+                        className="bg-pink-3 text-white rounded px-2 py-1 text-sm"
+                      >
+                        {spec}
+                      </span>
+                    ))}
               </div>
             </div>
           </div>
         </div>
 
-               {/* DESCRIÇÃO DO PERFIL */}
-        <div className="flex mt-28 gap-28 justify-between">
-          <div className="flex-1">
-            <h1 className="text-gray-3 text-[23px] font-ABeeZee">
-              Doula a {yearsAsDoula ? yearsAsDoula : "5"} anos
-            </h1>
-            <h1 className="text-xl text-gray-4 break-words max-w-xl mt-4">
-              {description}
-            </h1>
+        <div className="mt-8 lg:mt-20 text-gray-3 lg:flex lg:justify-between">
+          <div className="text-center lg:text-left">
+            <h2 className="font-bold text-lg">Descrição</h2>
+            <p>{description}</p>
           </div>
 
           {/* Conteúdos Publicados */}
-          <div className="flex-1 ">
+          <div className="flex-1">
             <h1 className="text-gray-3 text-[23px] font-ABeeZee">Conteúdos publicados:</h1>
             <div className="mt-4 space-y-4">
               <div className="flex items-start cursor-pointer border-2 border-gray-300 rounded-lg hover:bg-gray-200 bg-white">
@@ -236,89 +253,69 @@ export default function Home() {
                   <Image src={arrow} alt="Seta rosa" className="h-10 w-10" />
                 </div>
               </div>
+              {/* Adicione mais conteúdos publicados aqui */}
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
+      {/* Chamada do SettingsModal */}
+      <SettingsModal isOpen={isSettingsModalOpen} onClose={() => setIsSettingsModalOpen(false)} />
 
-      {/* MODAL */}
+      {/* Modal para editar perfil */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-transparent">
-          <div className="bg-white p-8 rounded-md max-w-4xl w-full relative">
-            <button onClick={toggleModal} className="absolute top-4 right-4">
-              <span className="text-gray-500">X</span>
-            </button>
-
-            <div className="flex items-start">
-              
-              <div className="mr-8">
-                <label className="block mb-1">Foto de Perfil</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="border-gray-1 border-1 p-2 rounded-lg w-full"
-                />
-            
-                {selectedImage && (
-                  <div className="mt-4">
-                    <img
-                      src={selectedImage}
-                      alt="Preview"
-                      className="w-60 h-60 object-cover rounded-lg"
-                    />
-                  </div>
-                )}
-              </div>
-
-              <div className="flex-grow">
-                <div className="mb-4">
-                  <label className="block mb-1">Tempo como Doula</label>
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 w-11/12 md:w-1/3">
+            <h2 className="text-lg font-bold mb-4">Editar Perfil</h2>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="mb-4"
+            />
+            <input
+              type="text"
+              placeholder="CPF"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              className="border rounded p-2 mb-4 w-full"
+            />
+            <input
+              type="text"
+              placeholder="Anos como doula"
+              value={yearsAsDoula}
+              onChange={(e) => setYearsAsDoula(e.target.value)}
+              className="border rounded p-2 mb-4 w-full"
+            />
+            <textarea
+              placeholder="Descrição"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="border rounded p-2 mb-4 w-full"
+            />
+            <div>
+              <h2 className="font-bold mb-2">Especializações</h2>
+              {specializationOptions.map((option) => (
+                <label key={option} className="flex items-center mb-2">
                   <input
-                    type="text"
-                    value={yearsAsDoula}
-                    onChange={(e) => setYearsAsDoula(e.target.value)}
-                    className="border p-2 rounded-lg w-full"
-                    placeholder="Insira o tempo como Doula"
+                    type="checkbox"
+                    checked={selectedSpecializations.includes(option)}
+                    onChange={() => handleSpecializationChange(option)}
+                    className="mr-2"
                   />
-                </div>
-
-                <div className="mb-4">
-                  <label className="block mb-1">Descrição</label>
-                  <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="border p-2 rounded-lg w-full"
-                    placeholder="Insira uma descrição"
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label className="block mb-1">Especialização</label>
-                  <div className="flex flex-wrap gap-2">
-                    {specializationOptions.map((option, index) => (
-                      <label key={index} className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          checked={selectedSpecializations.includes(option)}
-                          onChange={() => handleSpecializationChange(option)}
-                        />
-                        <span>{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <button onClick={handleSave} className="bg-pink-3 text-white rounded-lg p-2 w-full">
-                  Salvar
-                </button>
-              </div>
+                  {option}
+                </label>
+              ))}
             </div>
+            <button onClick={handleSaveProfilePicture} className="mt-4 bg-pink-3 text-white p-2 rounded">
+              Salvar
+            </button>
+            <button onClick={toggleModal} className="mt-4 bg-gray-300 text-gray-700 p-2 rounded">
+              Cancelar
+            </button>
           </div>
         </div>
       )}
-
     </div>
   );
 }
