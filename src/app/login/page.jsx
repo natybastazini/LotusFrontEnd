@@ -16,8 +16,7 @@ import CircleDegrade from "../../../public/icons/utilities/circle-degrade.svg"
 export default function Home() {
 
   // URl da API
-  const apiUrl = "";
-
+  const apiUrl = "http://localhost:8080/v1/Lotus/cadastro/gestante/login";
 
   //Variveis
   const [email, setEmail] = useState("");
@@ -26,12 +25,13 @@ export default function Home() {
   const router = useRouter();
 
   // Alerts (invalidEmail, successLogin, funcaoFututa)
-  const invalidEmail = () => {
+  const invalidDados = () => {
     Swal.fire({
-      title: "Preencha todos os campos corretamente",
-      icon: "error",
+      title: "Login falhou.",
+      text: "Não desanime! Confira seus dados e tente outra vez.",
+      icon: "warning",
       showConfirmButton: false,
-      timer: 1500
+      timer: 2000
     });
   };
 
@@ -44,17 +44,17 @@ export default function Home() {
     });
   };
 
-  const funcaoFutura = () => {
+  const featureConstruction = () => {
     Swal.fire({
       title: "Em manutenção",
-      text: "Essa funcionalidade esta passando por alterações",
+      text: "Essa funcionalidade está passando por alterações",
       icon: "info",
       showConfirmButton: false,
       timer: 1700
     });
   }
 
-  const cadastro = () => {
+  const registePageRouter = () => {
     router.push('cadastro');
   }
 
@@ -65,8 +65,7 @@ export default function Home() {
 
     // Validação de campos
     if (email === "" || password === "" || !email.includes('@') || !email.includes('.com')) {
-      invalidEmail();
-      console.log("cheguei aqui")
+      invalidDados();
       return;
     }
 
@@ -88,10 +87,13 @@ export default function Home() {
       if (response.ok) {
 
         successLogin();
+        router.push('homepage');
         console.log("Login realizado com sucesso:", data);
 
 
       } else {
+
+        invalidDados()
         console.log("Erro no login");
       }
 
@@ -101,7 +103,6 @@ export default function Home() {
       
     }
   };
-
 
   return (
 
@@ -115,7 +116,7 @@ export default function Home() {
             <Image className="w-[15%]" alt="Lotus Icon" src={LotusIcon}></Image>
 
             <h1 className="text-gray-3 text-5xl">Login Lótus</h1>
-            <h2 onClick={cadastro} className="text-gray-3">Ainda não possui uma conta? <span className="hover:text-pink-2 cursor-pointer transition duration-150 ease-in-out">Clique aqui</span> </h2>
+            <h2 className="text-gray-3">Ainda não possui uma conta? <span onClick={registePageRouter} className="hover:text-pink-2 cursor-pointer transition duration-150 ease-in-out">Clique aqui</span> </h2>
           </div>
 
           {/* Campos para entrada de valor */}
@@ -135,7 +136,7 @@ export default function Home() {
                 required />
             </div>
 
-            <p onClick={funcaoFutura} className="text-pink-3 hover:text-pink-2  hover:cursor-pointer transition duration-150 ease-in-out">Esqueceu sua senha?</p>
+            <p onClick={featureConstruction} className="text-pink-3 hover:text-pink-2  hover:cursor-pointer transition duration-150 ease-in-out">Esqueceu sua senha?</p>
 
           </form>
 
