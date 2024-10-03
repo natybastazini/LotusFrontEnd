@@ -26,7 +26,17 @@ export default async function Home() {
 
     }
 
+    async function getContentID(id) {
+
+        const url = `http://localhost:8080/v1/Lotus/cadastro/doula/${id}`
+        const response = await fetch(url)
+        const data = await response.json()
+        return data.conteudosDados
+
+    }
+
     const conteudo = await getContentAll()
+    const id = await getContentID()
 
     return (
         <div className="flex h-screen">
