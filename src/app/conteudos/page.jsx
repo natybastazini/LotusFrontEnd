@@ -121,7 +121,8 @@ export default async function Home() {
               </div>
               {/* card */}
               <div className="flex flex-row gap-8">
-
+                
+                {console.log(conteudo)}
                 {conteudo.map((item)=>{
                     return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} key={item.id_conteudos} />
                 })}
