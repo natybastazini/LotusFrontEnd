@@ -20,7 +20,7 @@ export default async function Home() {
 
     async function getContentAll() {
 
-        const url = `http://localhost:8080/v1/Lotus/conteudo/gestante` 
+        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante` 
         const response = await fetch(url)
         const data = await response.json()
         return data.conteudosDados
