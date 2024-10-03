@@ -97,7 +97,7 @@ export default function Register() {
 
           {/* Campos para entrada de valor */}
 
-          <form className="flex flex-col gap-4 w-[40vw] text-gray-4 text-xl font-ABeeZee max-xl:w-full max-sm:text-sm">
+          <form className="flex flex-col gap-4 w-[40vw] text-gray-4  font-ABeeZee max-xl:w-full max-sm:text-sm">
 
 
             <div className="flex gap-4 w-full h-18">
@@ -160,7 +160,7 @@ export default function Register() {
 
             </div>
 
-            <button id="btn" className="sw-1/3 transition duration-150 ease-in-out bg-gradient-to-r from-pink-3 to-orange-3 p-4 px-6 items-center justify-between rounded-full text-white flex hover:cursor-pointer hover:scale-95 max-sm:w-full max-sm:h-16 ">
+            <button id="btn" className="w-1/3 transition duration-150 ease-in-out bg-gradient-to-r from-pink-3 to-orange-3 p-4 px-6 items-center justify-between rounded-full text-white flex hover:cursor-pointer hover:scale-95 max-sm:w-full max-sm:h-16 ">
 
               <p className="text-xl">Próximo</p>
               <Image className="w-[10%] max-sm:w-[5vw] " alt="Arrow Icon" src={ArrowIcon}></Image>
