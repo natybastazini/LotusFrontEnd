@@ -30,7 +30,7 @@ export default function Conteudo ({imagem, titulo, data, texto}) {
                   
                 </p>
             </div>
-        </div>   
+        </div>
 
     </div>
    )

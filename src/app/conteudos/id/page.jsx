@@ -20,7 +20,7 @@ export default async function Home() {
 
     async function getContentAll() {
 
-        const url = `http://localhost:8080/v1/Lotus/conteudo/gestante`
+        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante`
         const response = await fetch(url)
         const data = await response.json()
         return data.conteudosDados
@@ -29,7 +29,7 @@ export default async function Home() {
 
     async function getContentID(id) {
 
-        const url = `http://localhost:8080/v1/Lotus/cadastro/doula/${id}`
+        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudo/gestante/${id}`
         const response = await fetch(url)
         const data = await response.json()
         return data.conteudosDados
@@ -106,7 +106,7 @@ export default async function Home() {
                         </div>
                     </div>
                     {/* Card Conteudo */}
-
+                    {console.log(conteudo)}
                     {conteudo.map((item)=>{
                     return <Conteudo imagem={item.foto_capa} titulo={item.titulo_conteudo} data={item.data_conteudo} texto={item.conteudo} key={item.id_conteudos} />
                     })}
