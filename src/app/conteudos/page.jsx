@@ -13,11 +13,7 @@ import LogoChat from "../../../public/icons/nav/chat.svg"
 import LogoGaleria from "../../../public/icons/nav/galeria.svg"
 import LogoPerfil from "../../../public/icons/nav/profile.svg"
 
-// Componente
-import Card from "@/components/conteudos";
-
-// Navegar entre telas
-import { useRouter } from "next/router";
+import Card from "@/components/conteudos"
 
 
 export default async function Home() {
@@ -32,10 +28,6 @@ export default async function Home() {
     }
 
     const conteudo = await getContentAll()
-  
-    const nav = () => {
-      router.push('./conteudo')
-    }
 
   return (
     <div className="flex h-screen">
@@ -128,14 +120,14 @@ export default async function Home() {
                 </button>
               </div>
               {/* card */}
-              <div onClick={nav} className="flex flex-row gap-8">
+              <div className="flex flex-row gap-8">
                 
                 {console.log(conteudo)}
                 {conteudo.map((item)=>{
                     return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} key={item.id_conteudos} />
                 })}
 
-                {/* <button className="h-72 w-[500px] bg-white rounded-2xl shadow-lg aspect-video hover:scale-105 transition duration-200">
+                {/* <div className="h-72 w-[500px] bg-white rounded-2xl shadow-lg aspect-video hover:scale-105 transition duration-200">
                   <div className="h-[80%] rounded-2xl bg-pink-300 ">
                     <div className="h-full w-full">
                       <Image></Image>          
@@ -145,7 +137,7 @@ export default async function Home() {
                   {/* <p className="font-Inter font-medium text-xl text-gray-3 p-4">
                     Desvendando a Amamentação
                   </p>
-                </button> */}
+                </div> */}
                 
                 
               </div>
