@@ -124,7 +124,7 @@ export default async function Home() {
                 
                 {console.log(conteudo)}
                 {conteudo.map((item)=>{
-                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} key={item.id_conteudos} />
+                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} id={item.id_conteudos} key={item.id_conteudos} />
                 })}
 
                 {/* <div className="h-72 w-[500px] bg-white rounded-2xl shadow-lg aspect-video hover:scale-105 transition duration-200">
