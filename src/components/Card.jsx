@@ -1,7 +1,7 @@
 import { Jersey_10 } from "next/font/google";
 import Image from "next/image";
 
-export default function Card ({titulo, imagem, id, onClick}) {
+export default function Card ({titulo, imagem}) {
 
 
     
