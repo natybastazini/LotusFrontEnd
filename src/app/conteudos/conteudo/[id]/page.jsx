@@ -1,31 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "../../../public/icons/utilities/lotus-icon.svg"
-import LogoVerMais from "../../../public/icons/utilities/add-circle.svg"
-import LogoLogout from "../../../public/icons/nav/logout.svg"
+import Logo from "@/../public/icons/utilities/lotus-icon.svg"
+import LogoLogout from "@/../public/icons/nav/logout.svg"
 
 // Navegção
-import { useRouter } from 'next/router';
-
-import LogoHome from "../../../public/icons/nav/home.svg"
-import LogoMonitoramento from "../../../public/icons/nav/monitoramento.svg"
-import LogoConteudo from "../../../public/icons/nav/conteudos.svg"
-import LogoChat from "../../../public/icons/nav/chat.svg"
-import LogoGaleria from "../../../public/icons/nav/galeria.svg"
-import LogoPerfil from "../../../public/icons/nav/profile.svg"
+import LogoHome from "@/../public/icons/nav/home.svg"
+import LogoMonitoramento from "@/../public/icons/nav/monitoramento.svg"
+import LogoConteudo from "@/../public/icons/nav/conteudos.svg"
+import LogoChat from "@/../public/icons/nav/chat.svg"
+import LogoGaleria from "@/../public/icons/nav/galeria.svg"
+import LogoPerfil from "@/../public/icons/nav/profile.svg"
 
 // Componente
-import Card from "@/components/conteudos"
-
-
+import Card from "@/components/Card";
 
 
 export default async function Home() {
 
     async function getContentAll() {
-
-      const router = useRouter()
 
         const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante` 
         const response = await fetch(url)
@@ -36,9 +29,6 @@ export default async function Home() {
 
     const conteudo = await getContentAll()
 
-    const handleCardClick = (id) => {
-      router.push(`/detalhes/${id}`) 
-    }
 
   return (
     <div className="flex h-screen">
@@ -101,42 +91,32 @@ export default async function Home() {
         {/* conteúdo */}
         <div className="bg-gray-1 w-full h-full rounded-[40px] overflow-hidden">
           {/* degradê */}
-          <div className="bg-pink-degrade-3 flex flex-row w-full h-20 justify-end overflow-hidden">
-            <div className="bg-pink-degrade-2 w-2/3 h-20 flex justify-end rounded-b-full">
-              <div className="bg-pink-degrade-1 w-1/2 h-20 rounded-bl-full"></div> 
+          <div className="bg-pink-degrade-3 flex flex-row w-full h-28 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
+            <div className="bg-pink-degrade-2 w-2/3 h-28 flex justify-end rounded-b-full">
+              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div> 
             </div> 
           </div>
           {/* título */}
           <div className="flex flex-col h-[10%] items-center justify-center gap-2">
             <h1 className="font-ABeeZee font-light text-gray-3 text-5xl">
-              Conteúdos
+              Amamentação
             </h1>
             <div className="bg-gray-2 w-[70%] h-2 rounded-full"></div>
           </div>
           {/* cards */}
-          <div className="h-[60%] flex flex-col justify-between gap-4 px-10">
+          <div className="h-[60%] flex flex-col justify-between gap-4 px-10 pt-12">
             {/* 1ª fileira de cards */}
             <div className="flex flex-col gap-2">
-              {/* cabeçalho */}
-              <div className="flex flex-row w-full h-20 items-center justify-between">
-                {/* subtítulo */}
-                <h1 className="font-ABeeZee font-medium text-3xl text-gray-3 ">
-                  Amamentação
-                </h1>
-                <button>
-                  <div className="flex flex-row items-center gap-2">
-                    <Image src={LogoVerMais} alt="ver-mais" className="size-4"></Image>
-                    <a className="font-Inter font-light text-base text-gray-3">Ver mais</a>
-                  </div>
-                </button>
-              </div>
               {/* card */}
               <div className="flex flex-row gap-8">
-                
-                {console.log(conteudo)}
+
                 {conteudo.map((item)=>{
-                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} key={item.id_conteudos} />
+                    return <Card 
+                                imagem={item.foto_capa} 
+                                titulo={item.titulo_conteudo} 
+                                key={item.id_conteudos} />
                 })}
+
 
                 {/* <div className="h-72 w-[500px] bg-white rounded-2xl shadow-lg aspect-video hover:scale-105 transition duration-200">
                   <div className="h-[80%] rounded-2xl bg-pink-300 ">
