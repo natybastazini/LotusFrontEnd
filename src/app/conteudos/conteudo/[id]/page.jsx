@@ -20,7 +20,7 @@ export default async function Home() {
 
     async function getContentAll() {
 
-        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante` 
+        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante`
         const response = await fetch(url)
         const data = await response.json()
         return data.conteudosDados
@@ -93,8 +93,8 @@ export default async function Home() {
           {/* degradê */}
           <div className="bg-pink-degrade-3 flex flex-row w-full h-28 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
             <div className="bg-pink-degrade-2 w-2/3 h-28 flex justify-end rounded-b-full">
-              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div> 
-            </div> 
+              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div>
+            </div>
           </div>
           {/* título */}
           <div className="flex flex-col h-[10%] items-center justify-center gap-2">
@@ -111,9 +111,9 @@ export default async function Home() {
               <div className="flex flex-row gap-8">
 
                 {conteudo.map((item)=>{
-                    return <Card 
-                                imagem={item.foto_capa} 
-                                titulo={item.titulo_conteudo} 
+                    return <Card
+                                imagem={item.foto_capa}
+                                titulo={item.titulo_conteudo}
                                 key={item.id_conteudos} />
                 })}
 
@@ -129,8 +129,8 @@ export default async function Home() {
                     Desvendando a Amamentação
                   </p>
                 </div> */}
-                
-                
+               
+               
               </div>
             </div>
           </div>
