@@ -14,7 +14,7 @@ import LogoPerfil from "@/../public/icons/nav/profile.svg"
 
 // Outros
 import LogoBaby from "@/../public/icons/profile-information/pink/baby.svg"
-import LogoSeta from "@/../public/icons/"
+import LogoSeta from "@/../public/icons/utilities/arrow-pink.svg"
 
 export default async function Home() {
 
@@ -104,7 +104,7 @@ export default async function Home() {
             </div>
             {/* quadro */}
             <div className="flex items-center justify-center">
-                <div className="h-[440px] w-[440px] bg-orange-600 rounded-xl border-pink-2 ">
+                <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3">
 
                 </div>
             </div>
@@ -123,7 +123,7 @@ export default async function Home() {
                     </div>
                 </div>
                 {/* card */}
-                <div className="h-20 w-[440px] bg-white rounded-md p-4 flex flex-row shadow-lg gap-6">
+                <div className="h-20 w-[440px] bg-white rounded-md p-4 flex flex-row shadow-lg gap-6 justify-between">
                     <Image src={LogoBaby} alt="chat" className="size-14"></Image>
                     <div className="">
                         <h1 className="font-Inter text-lg text-gray-4">
@@ -133,13 +133,18 @@ export default async function Home() {
                           Monte seu enxoval no checkList  
                         </p>
                     </div>
-                    <Image src={}></Image>
+                    <Image src={LogoSeta} alt="seta" className="size-14"></Image>
                 </div>
             </div>
         </div>
         {/* telinha 2 */}
         <div className="h-full bg-yellow-400">
-
+          {/* degradê */}
+          <div className="bg-pink-degrade-3 flex flex-row w-full h-28 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
+            <div className="bg-pink-degrade-2 w-2/3 h-28 flex justify-end rounded-b-full">
+              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div> 
+            </div> 
+          </div>
         </div>  
       </main>
     </div>
