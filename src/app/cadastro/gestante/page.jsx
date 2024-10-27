@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 
+//Components
+import AddPhoto from "@/components/addPhoto";
 
 // Import das imagens 
 import LotusIcon from "../../../../public/icons/utilities/lotus-icon.svg";
@@ -28,37 +30,37 @@ export default function RegisterDoula() {
     const isValidCPF = (cpf) => {
         cpf = cpf.replace(/[^\d]+/g, '');
         if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
-        
+
         let soma = 0;
         let resto;
         for (let i = 1; i <= 9; i++) soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
         resto = (soma * 10) % 11;
         if (resto === 10 || resto === 11) resto = 0;
         if (resto !== parseInt(cpf.substring(9, 10))) return false;
-    
+
         soma = 0;
         for (let i = 1; i <= 10; i++) soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
         resto = (soma * 10) % 11;
         if (resto === 10 || resto === 11) resto = 0;
         if (resto !== parseInt(cpf.substring(10, 11))) return false;
-    
+
         return true;
-      };
-    
-      // Função que valida e retorna o modal de cpf invalido
-      const handleSubmit = (e) => {
+    };
+
+    // Função que valida e retorna o modal de cpf invalido
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (isValidCPF(cpf)) {
-          alert('CPF válido!');
+            alert('CPF válido!');
         } else {
             Swal.fire({
                 icon: "warning",
                 title: "CPF invalido",
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
         }
-      };
+    };
 
     return (
         <div className="flex w-screen h-screen max-xl:p-16 max-sm:p-8 overflow-hidden">
@@ -92,7 +94,7 @@ export default function RegisterDoula() {
                             <h1 className="text-gray-3 text-5xl max-lg:text-3xl">Conte sobre você</h1>
                         </div>
 
-                        <button onClick={handleSubmit} className="w-44 px-8 h-10 bg-gradient-to-r text-white from-pink-3 to-orange-3 rounded-full flex justify-center gap-4 items-center">
+                        <button type="submit" onClick={handleSubmit} className="w-44 px-8 h-10 bg-gradient-to-r text-white from-pink-3 to-orange-3 rounded-full flex justify-center gap-4 items-center">
                             <p className="text-xl max-lg:text-xl">Concluir</p>
                             <Image className="w-[25%] max-sm:w-[5vw] " alt="Arrow Icon" src={CheckIcon}></Image>
                         </button>
@@ -102,44 +104,49 @@ export default function RegisterDoula() {
 
                     <form className="  flex flex-col gap-4 text-gray-4  font-ABeeZee max-xl:w-full max-sm:text-sm">
 
-
                         <div className="flex flex-col gap-4 ">
 
-                            <div className="flex p-4 h-16 rounded-3xl border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
-
-                                <Image className="w-[5%] max-sm:w-[10%]" alt="Email Icon" src={UserCheckIcon}></Image>
-                                <InputMask
-                                    mask="999.999.999-99"
-                                    value={cpf}
-                                    placeholder="CPF"
-                                    onChange={(e) => setCpf(e.target.value)}
-                                >
-                                    {(inputProps) => <input {...inputProps} type="text" id="cpf" />}
-                                </InputMask>
-                            </div>
+                            <div className="flex gap-4">
 
 
-                            <div className="flex p-4 h-16 rounded-3xl items-center border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
+                                <AddPhoto></AddPhoto>
+                                <div className="flex flex-col gap-3">
+                                    <div className="flex p-4 h-16 rounded-3xl border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
 
-                             <Image className="w-[5%] max-sm:w-[10%] " alt="Clipboard Icon" src={CakeIcon}></Image>
-                                <input
-                                    type="email"
-                                    placeholder="Idade"
-                                    className="w-full"
-                                    aria-label="Seu email"
-                                    required />
+                                        <Image className="w-[5%] max-sm:w-[10%]" alt="Email Icon" src={UserCheckIcon}></Image>
+                                        <InputMask
+                                            mask="999.999.999-99"
+                                            value={cpf}
+                                            placeholder="CPF"
+                                            onChange={(e) => setCpf(e.target.value)}>
+                                            {(inputProps) => <input {...inputProps} type="text" id="cpf" />}
+                                        </InputMask>
+                                    </div>
 
-                            </div>
+                                    <div className="flex p-4 h-16 rounded-3xl items-center border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
 
-                            <div className="flex p-4 h-16 rounded-3xl border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
+                                        <Image className="w-[5%] max-sm:w-[10%] " alt="Clipboard Icon" src={CakeIcon}></Image>
+                                        <input
+                                            type="email"
+                                            placeholder="Idade"
+                                            className="w-full"
+                                            aria-label="Seu email"
+                                            required />
 
-                                <Image className="w-[5%] max-sm:w-[10%]" alt="Clipboard Icon" src={ClipboardIcon}></Image>
-                                <input
-                                    type="email"
-                                    placeholder="Profissão"
-                                    className="w-full"
-                                    aria-label="Seu email"
-                                    required />
+                                    </div>
+
+                                    <div className="flex p-4 h-16 rounded-3xl border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
+
+                                        <Image className="w-[5%] max-sm:w-[10%]" alt="Clipboard Icon" src={ClipboardIcon}></Image>
+                                        <input
+                                            type="email"
+                                            placeholder="Profissão"
+                                            className="w-full"
+                                            aria-label="Seu email"
+                                            required />
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div className="flex p-4 h-16 rounded-3xl border-[3px] bg-white gap-4 max-sm:gap-2 max-sm:h-16 ">
