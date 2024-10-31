@@ -16,6 +16,11 @@ import LogoPerfil from "@/../public/icons/nav/profile.svg"
 import LogoBaby from "@/../public/icons/profile-information/pink/baby.svg"
 import LogoSeta from "@/../public/icons/utilities/arrow-pink.svg"
 
+// Icones
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaRegClock } from "react-icons/fa";
+import { IoAdd } from "react-icons/io5";
+
 export default async function Home() {
 
     async function getContentAll() {
@@ -138,14 +143,89 @@ export default async function Home() {
             </div>
         </div>
         {/* telinha 2 */}
-        <div className="h-full bg-yellow-400">
+        <div className="bg-gray-1 h-full rounded-[36px] overflow-hidden">
           {/* degradê */}
-          <div className="bg-pink-degrade-3 flex flex-row w-full h-28 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
-            <div className="bg-pink-degrade-2 w-2/3 h-28 flex justify-end rounded-b-full">
-              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div> 
-            </div> 
+          <div className="bg-orange-degrade-2 flex flex-row w-full h-16 justify-end rounded-s-[40px]  overflow-hidden">
+            <div className="bg-orange-degrade-3 w-1/2 flex justify-end rounded-bl-full"></div> 
           </div>
-        </div>  
+            {/* calendário */}
+            <div className="flex flex-col px-28 py-20 gap-4">
+              {/* card título */}
+              <div className="flex gap-2 items-baseline">
+                <h1 className="text-3xl text-orange-5 font-Inter">
+                  Agosto
+                </h1>
+                <p className="text-base text-orange-3 font-Inter ">
+                  2024
+                </p>
+              </div>
+              {/* card do calendário */}
+              <div className="h-60 w-full bg-transparent border-2 border-orange-3 rounded-lg"></div>
+              {/* cards de eventos */}
+              <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
+                <div className="flex flex-row items-baseline gap-2 pb-4">
+                  <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
+                    <p className="font-Inter text-pink-4 text-xs">
+                      20
+                    </p>
+                  </div>
+                  <p className="font-Inter text-xs text-[#af9676] font-semibold">
+                    Me ajuda Deus, ta foda esse tcc
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 px-12">
+                  <div className="flex flex-row items-center gap-2">
+                    <FaCalendarAlt className="text-[#af9676] h-4 w-5"/>
+                    <p className="font-Inter text-xs text-[#af9676] font-normal">
+                      27 jan 2024 
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center gap-2">
+                    <FaRegClock className="text-[#af9676] h-4 w-4"/>
+                    <p className="font-Inter text-xs text-[#af9676] font-normal">
+                      27 jan 2024 
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
+                <div className="flex flex-row items-baseline gap-2 pb-4">
+                  <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
+                    <p className="font-Inter text-pink-4 text-xs">
+                      20
+                    </p>
+                  </div>
+                  <p className="font-Inter text-xs text-[#af9676] font-semibold">
+                    Me ajuda Deus, ta foda esse tcc
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 px-12">
+                  <div className="flex flex-row items-center gap-2">
+                    <FaCalendarAlt className="text-[#af9676] h-4 w-5"/>
+                    <p className="font-Inter text-xs text-[#af9676] font-normal">
+                      27 jan 2024 
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center gap-2">
+                    <FaRegClock className="text-[#af9676] h-4 w-4"/>
+                    <p className="font-Inter text-xs text-[#af9676] font-normal">
+                      27 jan 2024 
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* botão de adicionar evento */}
+              <button className="h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2">
+                <IoAdd className="text-pink-4 h-10 w-10"/>
+                <p className="text-lg text-pink-4 font-normal font-Inter">
+                  Adicionar Evento
+                </p>
+              </button> 
+            </div>
+            
+
+          
+        </div> 
       </main>
     </div>
   )
