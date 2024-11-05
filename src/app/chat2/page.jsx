@@ -17,6 +17,9 @@ import LogOutIcon from "../../../public/icons/nav/logout.svg"
 import HomeIcon from "../../../public/icons/nav/home.svg"
 import ConteudoIcon from "../../../public/icons/nav/conteudos.svg"
 import ChatIcon from "../../../public/icons/nav/Ativo/chat.svg"
+import GaleriaIcon from "../../../public/icons/nav/galeria.svg"
+import MonitoramentoIcon from "../../../public/icons/nav/monitoramento.svg"
+import PerfilIcon from "../../../public/icons/nav/profile.svg"
 
 
 export default function Chat() {
@@ -24,7 +27,7 @@ export default function Chat() {
 
     return (
 
-        <div className="h-screen w-screen flex p-6 gap-4">
+        <div className="h-screen w-screen flex p-6 gap-4 overflow-hidden">
 
             <nav className="flex flex-col justify-between text-gray-3">
 
@@ -35,21 +38,35 @@ export default function Chat() {
                     </div>
 
                     <ul className="flex flex-col gap-2 ">
-                        <div className="flex items-center gap-2 bg-white p-2 rounded-xl w-36 cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
+                        <div className="flex items-center gap-2 bg-white p-2 rounded-xl w-44 cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
                             <Image className="w-[15px]" alt="Arrow Icon" src={HomeIcon}></Image>
                             <li>Home</li>
                         </div>
 
-                        <div className="flex items-center gap-2 w-36 bg-white p-2 rounded-xl cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
+                        <div className="flex items-center gap-2 w-44 bg-white p-2 rounded-xl cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
                             <Image className="w-[15px]" alt="Arrow Icon" src={ConteudoIcon}></Image>
                             <li>Conteúdos</li>
                         </div>
 
-                        <div className="flex items-center gap-2 bg-purple-degrade-1 p-2 rounded-xl w-36 cursor-pointer">
+                        <div className="flex items-center gap-2 bg-purple-degrade-1 p-2 rounded-xl w-44 cursor-pointer">
                             <Image className="w-[15px]" alt="Arrow Icon" src={ChatIcon}></Image>
                             <li className="text-purple-degrade-3">Chat</li>
                         </div>
 
+                        <div className="flex items-center gap-2 w-44 bg-white p-2 rounded-xl cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
+                            <Image className="w-[15px]" alt="Arrow Icon" src={GaleriaIcon}></Image>
+                            <li>Galeria</li>
+                        </div>
+
+                        <div className="flex items-center gap-2 w-44 bg-white p-2 rounded-xl cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
+                            <Image className="w-[15px]" alt="Arrow Icon" src={MonitoramentoIcon}></Image>
+                            <li>Monitoramento</li>
+                        </div>
+
+                        <div className="flex items-center gap-2 w-44 bg-white p-2 rounded-xl cursor-pointer hover:bg-gray-2  transition duration-150 ease-in-out">
+                            <Image className="w-[13px]" alt="Arrow Icon" src={PerfilIcon}></Image>
+                            <li>Perfil</li>
+                        </div>
                     </ul>
                 </div>
 
@@ -62,11 +79,11 @@ export default function Chat() {
 
             <main className="w-full bg-gray-2 rounded-2xl">
 
-                <div className="h-14 w-full bg-purple-degrade-3 rounded-2xl flex justify-end">
-                    <div className="w-14 h-14 bg-purple-degrade-2 rounded-e-2xl rounded-bl-full"></div>
-                    <div className="w-2/3 h-14 bg-purple-degrade-2 flex justify-end rounded-e-2xl ">
-                        <div className="w-14 h-14 bg-purple-degrade-1 rounded-e-2xl rounded-bl-full"></div>
-                        <div className="w-1/2 h-14 bg-purple-degrade-1 rounded-e-2xl"></div>
+                <div className="h-16 w-full bg-purple-degrade-3 rounded-2xl flex justify-end">
+                    <div className="w-14 h-16 bg-purple-degrade-2 rounded-e-2xl rounded-bl-full"></div>
+                    <div className="w-2/3 h-16 bg-purple-degrade-2 flex justify-end rounded-e-2xl ">
+                        <div className="w-14 h-16 bg-purple-degrade-1 rounded-e-2xl rounded-bl-full"></div>
+                        <div className="w-1/2 h-16 bg-purple-degrade-1 rounded-e-2xl"></div>
                     </div>
                 </div>
 
@@ -103,7 +120,7 @@ export default function Chat() {
                             </div>
                         </section>
 
-                
+
 
 
                     </div>
@@ -139,7 +156,7 @@ export default function Chat() {
 
 
                         {/* Input pra enviar mensagens */}
-                        <div className="flex bg-gray-2 rounded-full p-2 px-4 gap-2 justify-between items-center relative bottom-8">
+                        <div className="flex bg-gray-2 rounded-full p-2 px-4 gap-2 justify-between items-center relative bottom-10">
                             <input className="bg-gray-2 w-full" type="text" placeholder="Escreva sua mensagem" />
                             <Image className="w-[35px] h-[35px] bg-gradient-to-r from-purple-degrade-1 to-purple-degrade-3 rounded-full p-[4px]" alt="Arrow Icon" src={SendIcon}></Image>
                         </div>
