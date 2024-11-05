@@ -12,6 +12,7 @@ import LotusIcon from "../../../public/icons/utilities/lotus-icon.svg"
 import SearchIcon from "../../../public/icons/utilities/search-dark-grey.svg"
 import InfoIcon from "../../../public/icons/utilities/info.svg"
 import SendIcon from "../../../public/icons/utilities/send-white.svg"
+import TelefoneIcon from "../../../public/icons/utilities/telephone-white.svg"
 
 import LogOutIcon from "../../../public/icons/nav/logout.svg"
 import HomeIcon from "../../../public/icons/nav/home.svg"
@@ -77,7 +78,7 @@ export default function Chat() {
 
             </nav>
 
-            <main className="w-full bg-gray-2 rounded-2xl">
+            <main className="w-full h-full bg-gray-2 rounded-2xl">
 
                 <div className="h-16 w-full bg-purple-degrade-3 rounded-2xl flex justify-end">
                     <div className="w-14 h-16 bg-purple-degrade-2 rounded-e-2xl rounded-bl-full"></div>
@@ -89,7 +90,7 @@ export default function Chat() {
 
                 <section className="w-full h-full flex">
 
-                    <div className="w-1/3 p-6 flex flex-col justify-between">
+                    <div className="w-2/5 p-6 flex flex-col justify-between">
 
                         <section className="flex flex-col gap-2">
                             <h1 className="font-bold">Chats</h1>
@@ -103,30 +104,71 @@ export default function Chat() {
                             {/* Contatos Aqui */}
                             <div>
 
-                                <div className="bg-white rounded-2xl py-2 px-4 flex gap-2 items-start justify-between">
+                                <div className="cursor-pointer bg-white rounded-2xl py-2 px-4 flex gap-2 items-start justify-between">
                                     <div className="flex gap-2 items-center">
                                         {/* Foto de perfil */}
                                         <div className="w-14 h-14 bg-gray-3 rounded-full overflow-clip"></div>
                                         {/* Info do contato */}
                                         <div>
                                             <h1>Alanis Moura</h1>
-                                            <p>ultima mensagem</p>
+                                            <p className="text-gray-3">ultima mensagem</p>
                                         </div>
                                     </div>
                                     {/* Notificacao novas mensagens  */}
-                                    <div className="w-2 h-2 bg-pink-3 shadow-xl rounded-full overflow-clip"></div>
+                                    <div className="w-3 h-3 bg-pink-3 shadow-xl rounded-full overflow-clip"></div>
                                 </div>
 
                             </div>
+
+                            {/* Doulas disponiveis aqui */}
+
+                            <h1 className="font-bold mt-8">Doulas disponiveis</h1>
+
+                            <div className="flex flex-col gap-4 bg-slate-400 overflow-scroll"> 
+
+                                <div className="bg-gray-200 rounded-2xl p-4 flex flex-col gap-4">
+                                    {/* Foto da doula */}
+                                    <div className="w-full h-24 bg-gray-3 rounded-xl overflow-clip"></div>
+
+                                    {/* Info do doula (nome e bio) */}
+                                    <div>
+                                        <h1>Vitória Andradre</h1>
+                                        <p className="text-sm text-justify">Poder transformar histórias e ver mulheres renascendo nos seus partos é gratificante, e me traz a certeza de estar no caminho certo, em busca de respeito em cada nascimento!</p>
+                                    </div>
+
+
+                                    <button className="flex w-32 cursor-pointer items-center bg-purple-degrade-2 px-2 gap-2 text-white rounded-xl hover:bg-pink-degrade-3">
+                                        <Image className="w-[15px]" alt="Arrow Icon" src={TelefoneIcon}></Image>
+                                        <p>Fale comigo</p>
+                                    </button>
+                                </div>
+
+                                <div className="bg-gray-200 rounded-2xl p-4 flex flex-col gap-4">
+                                    {/* Foto da doula */}
+                                    <div className="w-full h-24 bg-gray-3 rounded-xl overflow-clip"></div>
+
+                                    {/* Info do doula (nome e bio) */}
+                                    <div>
+                                        <h1>Vitória Andradre</h1>
+                                        <p className="text-sm text-justify">Poder transformar histórias e ver mulheres renascendo nos seus partos é gratificante, e me traz a certeza de estar no caminho certo, em busca de respeito em cada nascimento!</p>
+                                    </div>
+
+
+                                    <button className="flex w-32 cursor-pointer items-center bg-purple-degrade-2 px-2 gap-2 text-white rounded-xl hover:bg-pink-degrade-3">
+                                        <Image className="w-[15px]" alt="Arrow Icon" src={TelefoneIcon}></Image>
+                                        <p>Fale comigo</p>
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+
                         </section>
-
-
-
-
                     </div>
 
                     {/* Chat */}
-                    <div className="bg-white w-full flex flex-col p-6 justify-between">
+                    <div className="bg-white w-full flex flex-col p-6 justify-between shadow-lg shadow-gray-3">
 
                         <section>
                             {/* infos do contato selecionado */}

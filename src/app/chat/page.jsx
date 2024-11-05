@@ -89,7 +89,7 @@ export default function Chat() {
                 <section className="w-full h-full flex">
 
                     {/* Toggle pra atendimento */}
-                    <div className="w-1/3 p-6 flex flex-col gap-2">
+                    <div className="w-2/5 p-6 flex flex-col gap-2">
                         <div className="flex items-center text-xs gap-2 bg-white rounded-2xl p-2">
                             <input type="checkbox" />
                             <p>Habilitar disponibilidade para atendimento.</p>
@@ -107,14 +107,14 @@ export default function Chat() {
                         {/* Contatos Aqui */}
                         <div>
 
-                            <div className="bg-white rounded-2xl py-2 px-4 flex gap-2 items-start justify-between">
+                            <div className="cursor-pointer bg-white rounded-2xl py-2 px-4 flex gap-2 items-start justify-between">
                                 <div className="flex gap-2 items-center">
                                     {/* Foto de perfil */}
                                     <div className="w-14 h-14 bg-gray-3 rounded-full overflow-clip"></div>
                                     {/* Info do contato */}
                                     <div>
                                         <h1>Vitoria Castro</h1>
-                                        <p>ultima mensagem</p>
+                                        <p className="text-gray-3">ultima mensagem</p>
                                     </div>
                                 </div>
                                 {/* Notificacao novas mensagens  */}
@@ -126,7 +126,7 @@ export default function Chat() {
                     </div>
 
                     {/* Chat */}
-                    <div className="bg-white w-full flex flex-col p-6 justify-between">
+                    <div className="bg-white w-full flex flex-col p-6 justify-between shadow-lg shadow-gray-3">
 
                         <section>
                             {/* infos do contato selecionado */}
@@ -153,7 +153,6 @@ export default function Chat() {
                         <section className="w-full h-full">
 
                         </section>
-
 
                         {/* Input pra enviar mensagens */}
                         <div className="flex bg-gray-2 rounded-full p-2 px-4 gap-2 justify-between items-center relative bottom-8">
