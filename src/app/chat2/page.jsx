@@ -154,7 +154,6 @@ export default function Chat() {
 
                         </section>
 
-
                         {/* Input pra enviar mensagens */}
                         <div className="flex bg-gray-2 rounded-full p-2 px-4 gap-2 justify-between items-center relative bottom-10">
                             <input className="bg-gray-2 w-full" type="text" placeholder="Escreva sua mensagem" />
