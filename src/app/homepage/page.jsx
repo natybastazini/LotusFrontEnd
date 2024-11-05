@@ -49,37 +49,37 @@ export default async function Home() {
         </div>
         {/* navegação */}
         <nav className="flex flex-col gap-10 h-[80%]">
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoHome} alt="home" className="fill-current group-hover:text-white size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Home
             </h1>
           </a>
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoMonitoramento} alt="monitoramento" className="size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Monitoramento
             </h1>
           </a>
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoConteudo} alt="conteudo" className="size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Conteúdo
             </h1>
           </a>
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoChat} alt="chat" className="size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Chat
             </h1>
           </a>
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoGaleria} alt="galeria" className="size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Galeria
             </h1>
           </a>
-          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-pink-degrade-1 transition duration-200 rounded-xl group">
+          <a href="#" className="flex flex-row items-center p-2 gap-2 hover:bg-orange-degrade-3 transition duration-200 rounded-xl group">
             <Image src={LogoPerfil} alt="perfil" className="size-8" ></Image>
             <h1 className="font-Inter font-normal text-gray-3 text-lg group-hover:text-white">
               Perfil
@@ -89,7 +89,7 @@ export default async function Home() {
         {/* botão sair */}
         <button className="flex flex-row gap-2 items-center">
           <Image src={LogoLogout} alt="logout" className="size-8"></Image>
-          <p className="font-Inter font-normal text-gray-3 text-lg hover:text-pink-degrade-3">
+          <p className="font-Inter font-normal text-gray-3 text-lg hover:text-orange-3">
             Log out
           </p>
         </button>
@@ -110,7 +110,6 @@ export default async function Home() {
             {/* quadro */}
             <div className="flex items-center justify-center">
                 <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3">
-
                 </div>
             </div>
             {/* cards */}
@@ -123,8 +122,8 @@ export default async function Home() {
                     {/* degradê */}
                     <div className="bg-pink-degrade-3 flex flex-row w-full h-4 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
                         <div className="bg-pink-degrade-2 w-2/3 flex justify-end rounded-b-full">
-                        <div className="bg-pink-degrade-1 w-1/2 rounded-bl-full"></div> 
-                        </div> 
+                        <div className="bg-pink-degrade-1 w-1/2 rounded-bl-full"></div>
+                        </div>
                     </div>
                 </div>
                 {/* card */}
@@ -135,10 +134,12 @@ export default async function Home() {
                             Enxoval
                         </h1>
                         <p className="font-Inter text-sm text-gray-4">
-                          Monte seu enxoval no checkList  
+                          Monte seu enxoval no checkList
                         </p>
                     </div>
-                    <Image src={LogoSeta} alt="seta" className="size-14"></Image>
+                    <button className="">
+                      <Image src={LogoSeta} alt="seta" className="size-14"></Image>
+                    </button>
                 </div>
             </div>
         </div>
