@@ -121,7 +121,9 @@ export default async function Home() {
                 </p>
             </div>
             {/* quadro */}
-            
+            {conteudo.map((item)=>{
+                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} id={item.id_conteudos} key={item.id_conteudos} />
+                })}
             {/* <div className="flex items-center justify-center">
                 <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
                   <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
