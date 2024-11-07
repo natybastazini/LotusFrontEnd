@@ -104,12 +104,13 @@ export default async function Home() {
                     <span>{gestante.nome}</span> 
                 </h2>
                 <p className="font-Inter font-light text-gray-4 text-xs">
-                    A galeria super top pro seu bb!!
+                  Estamos aqui para acompanhar cada passo dessa jornada incrível, oferecendo suporte, dicas e informações personalizadas para você e seu bebê.
                 </p>
             </div>
             {/* quadro */}
             <div className="flex items-center justify-center">
-                <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3">
+                <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
+                  <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
                 </div>
             </div>
             {/* cards */}
@@ -216,7 +217,7 @@ export default async function Home() {
                 </div>
               </div>
               {/* botão de adicionar evento */}
-              <button className="h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2">
+              <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
                 <IoAdd className="text-pink-4 h-10 w-10"/>
                 <p className="text-lg text-pink-4 font-normal font-Inter">
                   Adicionar Evento
