@@ -24,6 +24,10 @@ import { IoAdd } from "react-icons/io5";
 // Quadro
 import Flor from "@/components/quadro";
 
+import Calendar from 'react-calendar';
+import '@/../src/styles/Calendar.css';
+
+
 export default async function Home() {
 
     // async function getGestante() {
@@ -41,15 +45,15 @@ export default async function Home() {
 
     // const info = await getFlor()
 
-    async function getFlor(id) {
-      const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
-      const response = await fetch(url)
-      const data = await response.json()
-      return data.gestanteDados
+    // async function getFlor(id) {
+    //   const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
+    //   const response = await fetch(url)
+    //   const data = await response.json()
+    //   return data.gestanteDados
       
-    }
+    // }
 
-    const conteudo = await getFlor()
+    // const conteudo = await getFlor()
 
   return (
     <div className="flex h-screen">
@@ -115,21 +119,21 @@ export default async function Home() {
             <div className="flex flex-col gap-2">
                 <h2 className="font-ABeeZee text-black font-medium">
                     Olá,
-                    <span>{info.nome_gestante}</span> 
+                    {/* <span>{info.nome_gestante}</span>  */}
                 </h2>
                 <p className="font-Inter font-light text-gray-4 text-xs">
                   Estamos aqui para acompanhar cada passo dessa jornada incrível, oferecendo suporte, dicas e informações personalizadas para você e seu bebê.
                 </p>
             </div>
             {/* quadro */}
-            {conteudo.map(item)=>{
+            {/* {conteudo.map(item)=>{
               return <Flor imagem={item.foto_flor}></>
-            }}
-            {/* <div className="flex items-center justify-center">
+            }} */}
+            <div className="flex items-center justify-center">
                 <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
                   <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
                 </div>
-            </div> */}
+            </div>
             {/* cards */}
             <div className="flex items-center justify-center flex-col gap-2">
                 {/* card de progresso */}
@@ -170,18 +174,17 @@ export default async function Home() {
             {/* calendário */}
             <div className="flex flex-col px-28 py-20 gap-4">
               {/* card título */}
-              <div className="flex gap-2 items-baseline">
+              <div className="flex items-baseline">
                 <h1 className="text-3xl text-orange-5 font-Inter">
-                  Agosto
+                  Agenda
                 </h1>
-                <p className="text-base text-orange-3 font-Inter ">
-                  2024
-                </p>
               </div>
               {/* card do calendário */}
-              <div className="h-60 w-full bg-transparent border-2 border-orange-3 rounded-lg"></div>
+              <div className="h-60 w-full bg-transparent ">
+                <Calendar/>
+              </div>
               {/* cards de eventos */}
-              <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
+              {/* <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
                 <div className="flex flex-row items-baseline gap-2 pb-4">
                   <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
                     <p className="font-Inter text-pink-4 text-xs">
@@ -232,14 +235,14 @@ export default async function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* botão de adicionar evento */}
-              <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
+              {/* <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
                 <IoAdd className="text-pink-4 h-10 w-10"/>
                 <p className="text-lg text-pink-4 font-normal font-Inter">
                   Adicionar Evento
                 </p>
-              </button> 
+              </button>  */}
             </div>
             
 
