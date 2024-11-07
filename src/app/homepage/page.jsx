@@ -22,33 +22,34 @@ import { FaRegClock } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 
 // Quadro
-import flor from "@/components/quadro";
+import Flor from "@/components/quadro";
 
 export default async function Home() {
 
-    async function getGestante() {
+    // async function getGestante() {
 
-        const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
-        const response = await fetch(url)
-        const data = await response.json()
-        return data.conteudosDados
+    //     const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
+    //     const response = await fetch(url)
+    //     const data = await response.json()
+    //     return data.conteudosDados
 
-    }
-    
-    const gestante = {
-        nome: "Juliana"
-    }
+    // }    
 
-    const info = await getGestante()
+    // const gestante = {
+    //     nome: "Juliana"
+    // }
+
+    // const info = await getFlor()
 
     async function getFlor(id) {
       const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
       const response = await fetch(url)
       const data = await response.json()
       return data.gestanteDados
-
       
     }
+
+    const conteudo = await getFlor()
 
   return (
     <div className="flex h-screen">
@@ -121,9 +122,9 @@ export default async function Home() {
                 </p>
             </div>
             {/* quadro */}
-            {conteudo.map((item)=>{
-                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} id={item.id_conteudos} key={item.id_conteudos} />
-                })}
+            {conteudo.map(item)=>{
+              return <Flor imagem={item.foto_flor}></>
+            }}
             {/* <div className="flex items-center justify-center">
                 <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
                   <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
