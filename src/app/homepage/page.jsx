@@ -23,19 +23,20 @@ import { IoAdd } from "react-icons/io5";
 
 export default async function Home() {
 
-    async function getContentAll() {
+    async function getGestante() {
 
-        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante` 
+        const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
         const response = await fetch(url)
         const data = await response.json()
         return data.conteudosDados
 
     }
+    
     const gestante = {
         nome: "Juliana"
     }
 
-    const conteudo = await getContentAll()
+    const info = await getGestante()
 
   return (
     <div className="flex h-screen">
@@ -101,7 +102,7 @@ export default async function Home() {
             <div className="flex flex-col gap-2">
                 <h2 className="font-ABeeZee text-black font-medium">
                     Olá,
-                    <span>{gestante.nome}</span> 
+                    <span>{info.nome_gestante}</span> 
                 </h2>
                 <p className="font-Inter font-light text-gray-4 text-xs">
                   Estamos aqui para acompanhar cada passo dessa jornada incrível, oferecendo suporte, dicas e informações personalizadas para você e seu bebê.
