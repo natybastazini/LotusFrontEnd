@@ -21,6 +21,9 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 
+// Quadro
+import flor from "@/components/quadro";
+
 export default async function Home() {
 
     async function getGestante() {
@@ -37,6 +40,15 @@ export default async function Home() {
     }
 
     const info = await getGestante()
+
+    async function getFlor(id) {
+      const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
+      const response = await fetch(url)
+      const data = await response.json()
+      return data.gestanteDados
+
+      
+    }
 
   return (
     <div className="flex h-screen">
@@ -109,11 +121,12 @@ export default async function Home() {
                 </p>
             </div>
             {/* quadro */}
-            <div className="flex items-center justify-center">
+            
+            {/* <div className="flex items-center justify-center">
                 <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
                   <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
                 </div>
-            </div>
+            </div> */}
             {/* cards */}
             <div className="flex items-center justify-center flex-col gap-2">
                 {/* card de progresso */}
