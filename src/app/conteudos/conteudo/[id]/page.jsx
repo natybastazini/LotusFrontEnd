@@ -1,19 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "../../../../public/icons/utilities/lotus-icon.svg"
-import LogoLogout from "../../../../public/icons/nav/logout.svg"
+import Logo from "@/../public/icons/utilities/lotus-icon.svg"
+import LogoLogout from "@/../public/icons/nav/logout.svg"
 
 // Navegção
-import LogoHome from "../../../../public/icons/nav/home.svg"
-import LogoMonitoramento from "../../../../public/icons/nav/monitoramento.svg"
-import LogoConteudo from "../../../../public/icons/nav/conteudos.svg"
-import LogoChat from "../../../../public/icons/nav/chat.svg"
-import LogoGaleria from "../../../../public/icons/nav/galeria.svg"
-import LogoPerfil from "../../../../public/icons/nav/profile.svg"
+import LogoHome from "@/../public/icons/nav/home.svg"
+import LogoMonitoramento from "@/../public/icons/nav/monitoramento.svg"
+import LogoConteudo from "@/../public/icons/nav/conteudos.svg"
+import LogoChat from "@/../public/icons/nav/chat.svg"
+import LogoGaleria from "@/../public/icons/nav/galeria.svg"
+import LogoPerfil from "@/../public/icons/nav/profile.svg"
 
 // Componente
-import Conteudo from "@/components/Conteudo";
+import conteudoID from "@/components/conteudoID";
 // preciso da função de id
 
 export default async function Home() {
@@ -108,7 +108,7 @@ export default async function Home() {
                     {/* Card Conteudo */}
                     {console.log(conteudo)}
                     {conteudo.map((item)=>{
-                    return <Conteudo imagem={item.foto_capa} titulo={item.titulo_conteudo} data={item.data_conteudo} texto={item.conteudo} key={item.id_conteudos} />
+                    return <conteudoID imagem={item.foto_capa} titulo={item.titulo_conteudo} data={item.data_conteudo} texto={item.conteudo} key={item.id_conteudos} />
                     })}
 
                     {/* imagem */}
