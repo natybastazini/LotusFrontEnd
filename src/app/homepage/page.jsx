@@ -28,9 +28,12 @@ import { IoAdd } from "react-icons/io5";
 // Quadro
 import Flor from "@/components/quadro";
 
-import Calendar from 'react-calendar';
 import { useState } from "react";
+
+// Calendário
+import Calendar from "react-calendar";
 import '@/../src/styles/Calendar.css';
+
 
 
 export default async function Home() {
@@ -58,21 +61,8 @@ export default async function Home() {
 
   // }
 
-  const dateType = {
-    justTime: Date || null,
-    dateTime: Date || null
-  }
-
   // const conteudo = await getFlor()
-  const [selectedDate, setSelectedDate] = useState<dateType>{
-    justTime: null,
-    dateTime: null
-  }
 
-  const handleDayClick = (date) => {
-    setSelectedDate(date);
-    console.log(selectedDate);
-  };
 
   return (
     <div className="flex h-screen">
@@ -200,18 +190,8 @@ export default async function Home() {
             </div>
             {/* card do calendário */}
             <div className="h-60 w-full bg-transparent ">
-            <Calendar
-                minDate={new Date()}  // Impede a seleção de datas anteriores
-                className="REACT-CALENDAR p-2"
-                view="month"
-                onClickDay={handleDayClick}  // Atualiza o valor quando o dia é clicado
-                value={selectedDate}  // Passa a data selecionada para o componente
-                tileClassName={({ date }) => {
-                  console.log(date);  // Apenas para depuração, você pode remover depois
-                  return 'calendar-tile';
-                }}
-              />
-
+            {/* calendário */}
+              <Calendar></Calendar>
 
             </div>
             {/* cards de eventos */}
