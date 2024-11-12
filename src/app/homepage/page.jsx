@@ -1,5 +1,9 @@
+'use client'
+
+
 import Image from "next/image";
 import Link from "next/link";
+
 
 import Logo from "@/../public/icons/utilities/lotus-icon.svg"
 import LogoLogout from "@/../public/icons/nav/logout.svg"
@@ -25,39 +29,54 @@ import { IoAdd } from "react-icons/io5";
 import Flor from "@/components/quadro";
 
 import Calendar from 'react-calendar';
+import { useState } from "react";
 import '@/../src/styles/Calendar.css';
 
 
 export default async function Home() {
 
-    // async function getGestante() {
+  // async function getGestante() {
 
-    //     const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
-    //     const response = await fetch(url)
-    //     const data = await response.json()
-    //     return data.conteudosDados
+  //     const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
+  //     const response = await fetch(url)
+  //     const data = await response.json()
+  //     return data.conteudosDados
 
-    // }    
+  // }    
 
-    // const gestante = {
-    //     nome: "Juliana"
-    // }
+  // const gestante = {
+  //     nome: "Juliana"
+  // }
 
-    // const info = await getFlor()
+  // const info = await getFlor()
 
-    // async function getFlor(id) {
-    //   const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
-    //   const response = await fetch(url)
-    //   const data = await response.json()
-    //   return data.gestanteDados
-      
-    // }
+  // async function getFlor(id) {
+  //   const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
+  //   const response = await fetch(url)
+  //   const data = await response.json()
+  //   return data.gestanteDados
 
-    // const conteudo = await getFlor()
+  // }
+
+  const dateType = {
+    justTime: Date || null,
+    dateTime: Date || null
+  }
+
+  // const conteudo = await getFlor()
+  const [selectedDate, setSelectedDate] = useState<dateType>{
+    justTime: null,
+    dateTime: null
+  }
+
+  const handleDayClick = (date) => {
+    setSelectedDate(date);
+    console.log(selectedDate);
+  };
 
   return (
     <div className="flex h-screen">
-        <header className="flex flex-col md:w-[20%] py-10 px-10">
+      <header className="flex flex-col md:w-[20%] py-10 px-10">
         {/* lótus */}
         <div className="flex flex-row items-center gap-2 pb-16">
           <Image src={Logo} alt="logo" className="size-16"></Image>
@@ -115,76 +134,88 @@ export default async function Home() {
       <main className="w-[80%] bg-white p-10 grid grid-cols-2 gap-2">
         {/* telinha 1 */}
         <div className="h-full bg-gray-2 p-6 rounded-[40px] flex flex-col gap-10">
-            {/* Título e descrição */}
-            <div className="flex flex-col gap-2">
-                <h2 className="font-ABeeZee text-black font-medium">
-                    Olá,
-                    {/* <span>{info.nome_gestante}</span>  */}
-                </h2>
-                <p className="font-Inter font-light text-gray-4 text-xs">
-                  Estamos aqui para acompanhar cada passo dessa jornada incrível, oferecendo suporte, dicas e informações personalizadas para você e seu bebê.
-                </p>
-            </div>
-            {/* quadro */}
-            {/* {conteudo.map(item)=>{
+          {/* Título e descrição */}
+          <div className="flex flex-col gap-2">
+            <h2 className="font-ABeeZee text-black font-medium">
+              Olá,
+              {/* <span>{info.nome_gestante}</span>  */}
+            </h2>
+            <p className="font-Inter font-light text-gray-4 text-xs">
+              Estamos aqui para acompanhar cada passo dessa jornada incrível, oferecendo suporte, dicas e informações personalizadas para você e seu bebê.
+            </p>
+          </div>
+          {/* quadro */}
+          {/* {conteudo.map(item)=>{
               return <Flor imagem={item.foto_flor}></>
             }} */}
-            <div className="flex items-center justify-center">
-                <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
-                  <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
-                </div>
+          <div className="flex items-center justify-center">
+            <div className="h-[440px] w-[440px] bg-white rounded-xl border-4 border-pink-3 flex items-center justify-center">
+              <Image src={LogoBaby} alt="chat" className="size-1/2"></Image>
             </div>
-            {/* cards */}
-            <div className="flex items-center justify-center flex-col gap-2">
-                {/* card de progresso */}
-                <div className="h-20 w-[440px] bg-orange-1 rounded-md border-2 border-orange-degrade-1 p-4 flex flex-col gap-2">
-                    <p className="flex font-ABeeZee text-orange-degrade-1">
-                        12 semanas restantes
-                    </p>
-                    {/* degradê */}
-                    <div className="bg-pink-degrade-3 flex flex-row w-full h-4 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
-                        <div className="bg-pink-degrade-2 w-2/3 flex justify-end rounded-b-full">
-                        <div className="bg-pink-degrade-1 w-1/2 rounded-bl-full"></div>
-                        </div>
-                    </div>
+          </div>
+          {/* cards */}
+          <div className="flex items-center justify-center flex-col gap-2">
+            {/* card de progresso */}
+            <div className="h-20 w-[440px] bg-orange-1 rounded-md border-2 border-orange-degrade-1 p-4 flex flex-col gap-2">
+              <p className="flex font-ABeeZee text-orange-degrade-1">
+                12 semanas restantes
+              </p>
+              {/* degradê */}
+              <div className="bg-pink-degrade-3 flex flex-row w-full h-4 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
+                <div className="bg-pink-degrade-2 w-2/3 flex justify-end rounded-b-full">
+                  <div className="bg-pink-degrade-1 w-1/2 rounded-bl-full"></div>
                 </div>
-                {/* card */}
-                <div className="h-20 w-[440px] bg-white rounded-md p-4 flex flex-row shadow-lg gap-6 justify-between">
-                    <Image src={LogoBaby} alt="chat" className="size-14"></Image>
-                    <div className="">
-                        <h1 className="font-Inter text-lg text-gray-4">
-                            Enxoval
-                        </h1>
-                        <p className="font-Inter text-sm text-gray-4">
-                          Monte seu enxoval no checkList
-                        </p>
-                    </div>
-                    <button className="">
-                      <Image src={LogoSeta} alt="seta" className="size-14"></Image>
-                    </button>
-                </div>
+              </div>
             </div>
+            {/* card */}
+            <div className="h-20 w-[440px] bg-white rounded-md p-4 flex flex-row shadow-lg gap-6 justify-between">
+              <Image src={LogoBaby} alt="chat" className="size-14"></Image>
+              <div className="">
+                <h1 className="font-Inter text-lg text-gray-4">
+                  Enxoval
+                </h1>
+                <p className="font-Inter text-sm text-gray-4">
+                  Monte seu enxoval no checkList
+                </p>
+              </div>
+              <button className="">
+                <Image src={LogoSeta} alt="seta" className="size-14"></Image>
+              </button>
+            </div>
+          </div>
         </div>
         {/* telinha 2 */}
         <div className="bg-gray-1 h-full rounded-[36px] overflow-hidden">
           {/* degradê */}
           <div className="bg-orange-degrade-2 flex flex-row w-full h-16 justify-end rounded-s-[40px]  overflow-hidden">
-            <div className="bg-orange-degrade-3 w-1/2 flex justify-end rounded-bl-full"></div> 
+            <div className="bg-orange-degrade-3 w-1/2 flex justify-end rounded-bl-full"></div>
           </div>
-            {/* calendário */}
-            <div className="flex flex-col px-28 py-20 gap-4">
-              {/* card título */}
-              <div className="flex items-baseline">
-                <h1 className="text-3xl text-orange-5 font-Inter">
-                  Agenda
-                </h1>
-              </div>
-              {/* card do calendário */}
-              <div className="h-60 w-full bg-transparent ">
-                <Calendar/>
-              </div>
-              {/* cards de eventos */}
-              {/* <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
+          {/* calendário */}
+          <div className="flex flex-col px-28 py-20 gap-4">
+            {/* card título */}
+            <div className="flex items-baseline">
+              <h1 className="text-3xl text-orange-5 font-Inter">
+                Agenda
+              </h1>
+            </div>
+            {/* card do calendário */}
+            <div className="h-60 w-full bg-transparent ">
+            <Calendar
+                minDate={new Date()}  // Impede a seleção de datas anteriores
+                className="REACT-CALENDAR p-2"
+                view="month"
+                onClickDay={handleDayClick}  // Atualiza o valor quando o dia é clicado
+                value={selectedDate}  // Passa a data selecionada para o componente
+                tileClassName={({ date }) => {
+                  console.log(date);  // Apenas para depuração, você pode remover depois
+                  return 'calendar-tile';
+                }}
+              />
+
+
+            </div>
+            {/* cards de eventos */}
+            {/* <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
                 <div className="flex flex-row items-baseline gap-2 pb-4">
                   <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
                     <p className="font-Inter text-pink-4 text-xs">
@@ -236,18 +267,18 @@ export default async function Home() {
                   </div>
                 </div>
               </div> */}
-              {/* botão de adicionar evento */}
-              {/* <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
+            {/* botão de adicionar evento */}
+            {/* <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
                 <IoAdd className="text-pink-4 h-10 w-10"/>
                 <p className="text-lg text-pink-4 font-normal font-Inter">
                   Adicionar Evento
                 </p>
               </button>  */}
-            </div>
-            
+          </div>
 
-          
-        </div> 
+
+
+        </div>
       </main>
     </div>
   )
