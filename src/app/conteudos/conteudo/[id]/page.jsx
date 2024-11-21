@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,38 +15,44 @@ import LogoGaleria from "@/../public/icons/nav/galeria.svg"
 import LogoPerfil from "@/../public/icons/nav/profile.svg"
 
 // Componente
-import conteudoID from "@/components/conteudoID";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import ConteudoID from "@/components/ConteudoID";
 // preciso da função de id
 
-export default async function Home() {
+export default function Home() {
 
-    async function getContentAll() {
-
-        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante`
-        const response = await fetch(url)
-        const data = await response.json()
-        return data.conteudosDados
-
-    }
+    const [dados, setDados] = useState()
+    const params = useParams()
 
     async function getContentID(id) {
 
         const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudo/gestante/${id}`
         const response = await fetch(url)
         const data = await response.json()
-        return data.conteudosDados
+        return data.conteudo
 
     }
 
-    const conteudo = await getContentAll()
-    const id = await getContentID()
+    useEffect(() => {
+        getDados(params.id)
+    }, [params])
+
+    const getDados = async(id) => {   
+        
+        const dado = await getContentID(id)        
+        if(dado){
+            console.log(dado);
+            setDados(dado)
+        }
+    }   
 
     return (
         <div className="flex h-screen">
             <header className="flex flex-col md:w-[20%] py-10 px-10">
                 {/* lótus */}
                 <div className="flex flex-row items-center gap-2 pb-16">
-                    <Image src={Logo} alt="logo" className="size-16"></Image>
+                    <Image src={Logo} alt="logo" priority className="size-16"></Image>
                     <h1 className="font-ABeeZee text-pink-3 font-light text-3xl text-center">
                         Lótus
                     </h1>
@@ -106,10 +114,10 @@ export default async function Home() {
                         </div>
                     </div>
                     {/* Card Conteudo */}
-                    {console.log(conteudo)}
-                    {conteudo.map((item)=>{
-                    return <conteudoID imagem={item.foto_capa} titulo={item.titulo_conteudo} data={item.data_conteudo} texto={item.conteudo} key={item.id_conteudos} />
-                    })}
+                    {dados && (
+                        <ConteudoID imagem={dados[0].foto_capa} titulo={dados[0].titulo_conteudo} data={dados[0].data_conteudo} texto={dados[0].conteudo} />
+                    ) }
+                   
 
                     {/* imagem */}
                     {/* <div className="w-full h-[26%] rounded-b-[40px] bg-pink-400">

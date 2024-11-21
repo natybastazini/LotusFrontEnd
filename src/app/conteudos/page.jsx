@@ -18,23 +18,23 @@ import Card from "@/components/conteudos"
 
 export default async function Home() {
 
-    async function getContentAll() {
+  async function getContentAll() {
 
-        const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante`
-        const response = await fetch(url)
-        const data = await response.json()
-        return data.conteudosDados
+    const url = `https://lotus-back-end.onrender.com/v1/Lotus/conteudos/gestante`
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.conteudosDados
 
-    }
+  }
 
-    const conteudo = await getContentAll()
+  const conteudo = await getContentAll()
 
   return (
     <div className="flex h-screen">
       <header className="flex flex-col md:w-[20%] py-10 px-10">
         {/* lótus */}
         <div className="flex flex-row items-center gap-2 pb-16">
-          <Image src={Logo} alt="logo" className="size-16"></Image>
+          <Image src={Logo} alt="logo" priority className="size-16"></Image>
           <h1 className="font-ABeeZee text-pink-3 font-light text-3xl text-center">
             Lótus
           </h1>
@@ -88,11 +88,11 @@ export default async function Home() {
       </header>
       <main className="w-[80%] bg-white p-10">
         {/* conteúdo */}
-        <div className="bg-gray-1 w-full h-full rounded-[40px] overflow-hidden">
+        <div className="bg-gray-1 w-full h-full rounded-[40px] overflow-hidden flex flex-col">
           {/* degradê */}
-          <div className="bg-pink-degrade-3 flex flex-row w-full h-28 justify-end rounded-s-[40px] rounded-e-[40px] overflow-hidden">
-            <div className="bg-pink-degrade-2 w-2/3 h-28 flex justify-end rounded-b-full">
-              <div className="bg-pink-degrade-1 w-1/2 h-28 rounded-bl-full"></div>
+          <div className="bg-pink-degrade-3 flex flex-row w-full h-20 justify-end rounded-tl-[40px] overflow-hidden">
+            <div className="bg-pink-degrade-2 w-2/3 h-20 flex justify-end rounded-b-full">
+              <div className="bg-pink-degrade-1 w-1/2 h-20 rounded-bl-full"></div>
             </div>
           </div>
           {/* título */}
@@ -103,13 +103,17 @@ export default async function Home() {
             <div className="bg-gray-2 w-[70%] h-2 rounded-full"></div>
           </div>
           {/* cards */}
-          <div className="h-[60%] flex flex-col justify-between gap-4 px-10">
+          <div className="h-[60%] flex flex-col justify-between gap-4 px-10 grow">
             {/* 1ª fileira de cards */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 h-full overflow-y-scroll overscroll-x-none p-4"
+              style={{
+                scrollbarWidth: 'none'
+              }}
+            >
               {/* cabeçalho */}
               {/* <div className="flex flex-row w-full h-20 items-center justify-between"> */}
-                {/* subtítulo */}
-                {/* <h1 className="font-ABeeZee font-medium text-3xl text-gray-3 ">
+              {/* subtítulo */}
+              {/* <h1 className="font-ABeeZee font-medium text-3xl text-gray-3 ">
                   Amamentação
                 </h1>
                 <button>
@@ -120,12 +124,13 @@ export default async function Home() {
                 </button>
               </div> */}
               {/* card */}
-              <div className="flex flex-row gap-8 p">
-               
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-8 h-full">
+
                 {console.log(conteudo)}
-                {conteudo.map((item)=>{
-                    return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} id={item.id_conteudos} key={item.id_conteudos} />
+                {conteudo.map((item) => {
+                  return <Card imagem={item.foto_capa} titulo={item.titulo_conteudo} id={item.id_conteudos} key={item.id_conteudos} />
                 })}
+                
 
                 {/* <div className="h-72 w-[500px] bg-white rounded-2xl shadow-lg aspect-video hover:scale-105 transition duration-200">
                   <div className="h-[80%] rounded-2xl bg-pink-300 ">
@@ -133,13 +138,13 @@ export default async function Home() {
                       <Image></Image>          
                     </div>
                   </div> */}
-                  {/* título do card */}
-                  {/* <p className="font-Inter font-medium text-xl text-gray-3 p-4">
+                {/* título do card */}
+                {/* <p className="font-Inter font-medium text-xl text-gray-3 p-4">
                     Desvendando a Amamentação
                   </p>
                 </div> */}
-               
-               
+
+
               </div>
             </div>
           </div>
