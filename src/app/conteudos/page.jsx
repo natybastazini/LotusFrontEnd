@@ -107,9 +107,9 @@ export default async function Home() {
             {/* 1ª fileira de cards */}
             <div className="flex flex-col gap-2">
               {/* cabeçalho */}
-              <div className="flex flex-row w-full h-20 items-center justify-between">
+              {/* <div className="flex flex-row w-full h-20 items-center justify-between"> */}
                 {/* subtítulo */}
-                <h1 className="font-ABeeZee font-medium text-3xl text-gray-3 ">
+                {/* <h1 className="font-ABeeZee font-medium text-3xl text-gray-3 ">
                   Amamentação
                 </h1>
                 <button>
@@ -118,9 +118,9 @@ export default async function Home() {
                     <a className="font-Inter font-light text-base text-gray-3">Ver mais</a>
                   </div>
                 </button>
-              </div>
+              </div> */}
               {/* card */}
-              <div className="flex flex-row gap-8">
+              <div className="flex flex-row gap-8 p">
                
                 {console.log(conteudo)}
                 {conteudo.map((item)=>{
