@@ -1,6 +1,5 @@
 'use client'
 
-
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -28,46 +27,21 @@ import { IoAdd } from "react-icons/io5";
 // Quadro
 import Flor from "@/components/quadro";
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // Calendário
 import Calendar from "react-calendar";
 import '@/../src/styles/Calendar.css';
 
+export default function Home() {
 
-export default async function Home() {
-
-  // async function getGestante() {
-
-  //     const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante` 
-  //     const response = await fetch(url)
-  //     const data = await response.json()
-  //     return data.conteudosDados
-
-  // }    
-
-  // const gestante = {
-  //     nome: "Juliana"
-  // }
-
-  // const info = await getFlor()
-
-  // async function getFlor(id) {
-  //   const url = `https://lotus-back-end.onrender.com/v1/Lotus/cadastro/gestante`
-  //   const response = await fetch(url)
-  //   const data = await response.json()
-  //   return data.gestanteDados
-
-  // }
-
-  // const conteudo = await getFlor()
-
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);  // Inicializa com null para evitar erro de hidratação
   const [events, setEvents] = useState([]);  // Estado para armazenar os eventos
+  const [newEvents, setNewEvents] = useState([]);  // Estado para armazenar eventos locais
   const [eventTitle, setEventTitle] = useState('');  // Título do evento
   const [eventDate, setEventDate] = useState(null);  // Data do evento
   const [eventTime, setEventTime] = useState('');  // Horário do evento
+  const [isModalOpen, setIsModalOpen] = useState(false);  // Estado para controlar a exibição do modal
 
   const apiUrl = "https://lotus-back-end.onrender.com/v1/Lotus/agenda";
 
@@ -85,51 +59,48 @@ export default async function Home() {
   const createEvent = async () => {
     if (eventTitle && eventDate && eventTime) {
       try {
+        // Cria o evento na API
         const response = await axios.post(apiUrl, {
           descricao_calendario: eventTitle,
           data_calendario: eventDate,
           horario_calendario: eventTime,
-          usuario_calendario_id: 1,  // Você pode alterar isso para o ID real do usuário
+          usuario_calendario_id: 1,  // ID do usuário
         });
+
+        // Adiciona o novo evento no estado local
+        const newEvent = {
+          descricao_calendario: eventTitle,
+          data_calendario: eventDate,
+          horario_calendario: eventTime
+        };
+
+        setNewEvents([...newEvents, newEvent]); // Adiciona o novo evento no estado local
         setEventTitle('');
         setEventDate(null);
         setEventTime('');
         fetchEvents();  // Recarrega os eventos após a criação
+        setIsModalOpen(false);  // Fecha o modal após a criação do evento
       } catch (error) {
         console.error("Erro ao criar evento:", error);
       }
     }
   };
 
-  // Função para editar um evento
-  const editEvent = async (id, newTitle, newDate, newTime) => {
-    try {
-      await axios.put(`${apiUrl}/${id}`, {
-        descricao_calendario: newTitle,
-        data_calendario: newDate,
-        horario_calendario: newTime,
-        usuario_calendario_id: 1,
-      });
-      fetchEvents();  // Recarrega os eventos após a edição
-    } catch (error) {
-      console.error("Erro ao editar evento:", error);
-    }
+  // Função para fechar o modal
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
-  // Função para excluir um evento
-  const deleteEvent = async (id) => {
-    try {
-      await axios.delete(`${apiUrl}/${id}`);
-      fetchEvents();  // Recarrega os eventos após a exclusão
-    } catch (error) {
-      console.error("Erro ao excluir evento:", error);
-    }
+  // Função para abrir o modal
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
   // Chama a função para buscar os eventos quando o componente for montado
   useEffect(() => {
+    setDate(new Date());  // Definir a data apenas no lado do cliente (evita erro de hidratação)
     fetchEvents();
-  }, []);
+  }, []);  // O efeito roda apenas uma vez após o componente ser montado
 
   return (
     <div className="flex h-screen">
@@ -248,7 +219,7 @@ export default async function Home() {
             <div className="bg-orange-degrade-3 w-1/2 flex justify-end rounded-bl-full"></div>
           </div>
           {/* calendário */}
-          <div className="flex flex-col px-28 py-20 gap-4">
+          <div className="flex flex-col px-28 py-20 gap-4 h-full">
             {/* card título */}
             <div className="flex items-baseline">
               <h1 className="text-3xl text-orange-5 font-Inter">
@@ -256,76 +227,67 @@ export default async function Home() {
               </h1>
             </div>
             {/* card do calendário */}
-            <div className="h-60 w-full bg-transparent mb-48">
+            <div className="h-full w-full mb-6">
             {/* calendário */}
-              <Calendar></Calendar>
-
-              
-
+              <Calendar value={date}></Calendar>
             </div>
-            {/* cards de eventos */}
-            {/* <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
-                <div className="flex flex-row items-baseline gap-2 pb-4">
-                  <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
-                    <p className="font-Inter text-pink-4 text-xs">
-                      20
-                    </p>
-                  </div>
-                  <p className="font-Inter text-xs text-[#af9676] font-semibold">
-                    Me ajuda Deus, ta foda esse tcc
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 px-12">
-                  <div className="flex flex-row items-center gap-2">
-                    <FaCalendarAlt className="text-[#af9676] h-4 w-5"/>
-                    <p className="font-Inter text-xs text-[#af9676] font-normal">
-                      27 jan 2024 
-                    </p>
-                  </div>
-                  <div className="flex flex-row items-center gap-2">
-                    <FaRegClock className="text-[#af9676] h-4 w-4"/>
-                    <p className="font-Inter text-xs text-[#af9676] font-normal">
-                      27 jan 2024 
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="h-28 w-full bg-orange-100 rounded-lg p-4">
-                <div className="flex flex-row items-baseline gap-2 pb-4">
-                  <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
-                    <p className="font-Inter text-pink-4 text-xs">
-                      20
-                    </p>
-                  </div>
-                  <p className="font-Inter text-xs text-[#af9676] font-semibold">
-                    Me ajuda Deus, ta foda esse tcc
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 px-12">
-                  <div className="flex flex-row items-center gap-2">
-                    <FaCalendarAlt className="text-[#af9676] h-4 w-5"/>
-                    <p className="font-Inter text-xs text-[#af9676] font-normal">
-                      27 jan 2024 
-                    </p>
-                  </div>
-                  <div className="flex flex-row items-center gap-2">
-                    <FaRegClock className="text-[#af9676] h-4 w-4"/>
-                    <p className="font-Inter text-xs text-[#af9676] font-normal">
-                      27 jan 2024 
-                    </p>
-                  </div>
-                </div>
-              </div> */}
             {/* botão de adicionar evento */}
-            <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
+            <button onClick={openModal} className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
                 <IoAdd className="text-pink-4 h-10 w-10"/>
                 <p className="text-lg text-pink-4 font-normal font-Inter">
                   Adicionar Evento
                 </p>
               </button> 
+            
+            {/* Exibindo os eventos */}
+            <div className="flex flex-col gap-4 mt-6">
+              {newEvents.map((event, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg shadow-lg">
+                  <h3 className="text-lg font-bold">{event.descricao_calendario}</h3>
+                  <p className="text-sm text-gray-600">{event.data_calendario} - {event.horario_calendario}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </main>
+
+      {/* Modal para adicionar evento */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-xl w-96">
+            <h2 className="text-xl font-bold mb-4">Adicionar Evento</h2>
+            <input 
+              type="text" 
+              placeholder="Título do evento" 
+              value={eventTitle} 
+              onChange={(e) => setEventTitle(e.target.value)} 
+              className="w-full p-2 mb-4 border rounded-md"
+            />
+            <input 
+              type="date" 
+              value={eventDate} 
+              onChange={(e) => setEventDate(e.target.value)} 
+              className="w-full p-2 mb-4 border rounded-md"
+            />
+            <input 
+              type="time" 
+              value={eventTime} 
+              onChange={(e) => setEventTime(e.target.value)} 
+              className="w-full p-2 mb-4 border rounded-md"
+            />
+            <div className="flex justify-between">
+              <button 
+                onClick={closeModal} 
+                className="bg-gray-300 px-4 py-2 rounded-md">Cancelar</button>
+              <button 
+                onClick={createEvent} 
+                className="bg-pink-500 text-white px-4 py-2 rounded-md">Salvar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
