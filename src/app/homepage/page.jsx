@@ -3,22 +3,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
-
-import Logo from "@/../public/icons/utilities/lotus-icon.svg"
-import LogoLogout from "@/../public/icons/nav/logout.svg"
+import Logo from "@/public/icons/utilities/lotus-icon.svg"
+import LogoLogout from "@/public/icons/nav/logout.svg"
 
 // Navegção
-import LogoHome from "@/../public/icons/nav/home.svg"
-import LogoMonitoramento from "@/../public/icons/nav/monitoramento.svg"
-import LogoConteudo from "@/../public/icons/nav/conteudos.svg"
-import LogoChat from "@/../public/icons/nav/chat.svg"
-import LogoGaleria from "@/../public/icons/nav/galeria.svg"
-import LogoPerfil from "@/../public/icons/nav/profile.svg"
+import LogoHome from "@/public/icons/nav/home.svg"
+import LogoMonitoramento from "@/public/icons/nav/monitoramento.svg"
+import LogoConteudo from "@/public/icons/nav/conteudos.svg"
+import LogoChat from "@/public/icons/nav/chat.svg"
+import LogoGaleria from "@/public/icons/nav/galeria.svg"
+import LogoPerfil from "@/public/icons/nav/profile.svg"
 
 // Outros
-import LogoBaby from "@/../public/icons/profile-information/pink/baby.svg"
-import LogoSeta from "@/../public/icons/utilities/arrow-pink.svg"
+import LogoBaby from "@/public/icons/profile-information/pink/baby.svg"
+import LogoSeta from "@/public/icons/utilities/arrow-pink.svg"
 
 // Icones
 import { FaCalendarAlt } from "react-icons/fa";
@@ -29,11 +29,11 @@ import { IoAdd } from "react-icons/io5";
 import Flor from "@/components/quadro";
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 // Calendário
 import Calendar from "react-calendar";
 import '@/../src/styles/Calendar.css';
-
 
 
 export default async function Home() {
@@ -63,6 +63,73 @@ export default async function Home() {
 
   // const conteudo = await getFlor()
 
+  const [date, setDate] = useState(new Date());
+  const [events, setEvents] = useState([]);  // Estado para armazenar os eventos
+  const [eventTitle, setEventTitle] = useState('');  // Título do evento
+  const [eventDate, setEventDate] = useState(null);  // Data do evento
+  const [eventTime, setEventTime] = useState('');  // Horário do evento
+
+  const apiUrl = "https://lotus-back-end.onrender.com/v1/Lotus/agenda";
+
+  // Função para buscar os eventos na API
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get(apiUrl);
+      setEvents(response.data.agendaDados);
+    } catch (error) {
+      console.error("Erro ao buscar eventos:", error);
+    }
+  };
+
+  // Função para criar um novo evento
+  const createEvent = async () => {
+    if (eventTitle && eventDate && eventTime) {
+      try {
+        const response = await axios.post(apiUrl, {
+          descricao_calendario: eventTitle,
+          data_calendario: eventDate,
+          horario_calendario: eventTime,
+          usuario_calendario_id: 1,  // Você pode alterar isso para o ID real do usuário
+        });
+        setEventTitle('');
+        setEventDate(null);
+        setEventTime('');
+        fetchEvents();  // Recarrega os eventos após a criação
+      } catch (error) {
+        console.error("Erro ao criar evento:", error);
+      }
+    }
+  };
+
+  // Função para editar um evento
+  const editEvent = async (id, newTitle, newDate, newTime) => {
+    try {
+      await axios.put(`${apiUrl}/${id}`, {
+        descricao_calendario: newTitle,
+        data_calendario: newDate,
+        horario_calendario: newTime,
+        usuario_calendario_id: 1,
+      });
+      fetchEvents();  // Recarrega os eventos após a edição
+    } catch (error) {
+      console.error("Erro ao editar evento:", error);
+    }
+  };
+
+  // Função para excluir um evento
+  const deleteEvent = async (id) => {
+    try {
+      await axios.delete(`${apiUrl}/${id}`);
+      fetchEvents();  // Recarrega os eventos após a exclusão
+    } catch (error) {
+      console.error("Erro ao excluir evento:", error);
+    }
+  };
+
+  // Chama a função para buscar os eventos quando o componente for montado
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <div className="flex h-screen">
@@ -189,9 +256,11 @@ export default async function Home() {
               </h1>
             </div>
             {/* card do calendário */}
-            <div className="h-60 w-full bg-transparent ">
+            <div className="h-60 w-full bg-transparent mb-48">
             {/* calendário */}
               <Calendar></Calendar>
+
+              
 
             </div>
             {/* cards de eventos */}
@@ -248,16 +317,13 @@ export default async function Home() {
                 </div>
               </div> */}
             {/* botão de adicionar evento */}
-            {/* <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
+            <button className="group h-16 w-full bg-pink-degrade-1 rounded-2xl flex flex-row items-center p-4 gap-2 hover:bg-pink-2">
                 <IoAdd className="text-pink-4 h-10 w-10"/>
                 <p className="text-lg text-pink-4 font-normal font-Inter">
                   Adicionar Evento
                 </p>
-              </button>  */}
+              </button> 
           </div>
-
-
-
         </div>
       </main>
     </div>
