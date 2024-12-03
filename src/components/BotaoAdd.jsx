@@ -24,8 +24,12 @@ const ContentButton = ({ userRole }) => {
     <div className="relative">
       <button
         onClick={handleOpenModal}
-        className="bg-pink-degrade-3 hover:bg-pink-4 text-white font-bold py-2 px-4 rounded-lg transition"
+        className="flex items-center justify-center gap-2 w-64 h-14 bg-[#FFE6EB] hover:bg-pink-3 text-pink-4 font-Inter font-normal py-2 px-4 rounded-lg transition text-xl hover:text-white"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+
         Adicionar Conteúdo
       </button>
 
