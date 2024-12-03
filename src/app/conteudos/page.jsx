@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Logo from "../../../public/icons/utilities/lotus-icon.svg"
-import LogoVerMais from "../../../public/icons/utilities/add-circle.svg"
 import LogoLogout from "../../../public/icons/nav/logout.svg"
 
 // Navegção
